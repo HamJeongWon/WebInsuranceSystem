@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class main {
 		
     @RequestMapping("/main") 
-    private String boardList(Model model) throws Exception{
+    private String mainLoad(Model model) throws Exception{
         return "main"; 
     }
 }

@@ -18,8 +18,8 @@ public class Goods_Personal {
 	public void setSeparation(GSeparation separation) {this.separation = separation;}
 	
 	public Goods_Personal(){
-		this.provisionLimit = 0;
 		this.guaranteeContent = "";
+		this.provisionLimit = 0;
 		this.separation = GSeparation.Death;
 	}	
 }

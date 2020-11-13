@@ -5,6 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.example.demo.dao.InsuranceDAO">
 
+ 	<!-- Select문 --> 
+
+    <select id="SelectMaxID" resultType = "int">
+		select Max(InsuranceID) as InsuranceID from Insurance
+    </select>
+    
+    <select id="CheckInsuranceName" parameterType="string" resultType = "int">
+		SELECT EXISTS (select InsuranceName from Insurance where InsuranceName = #{record}) as isChk
+    </select>
+
     <select id="searchInsuranceIDandName" resultType="com.example.demo.model.Insurance.Insurance">
 		select * from Insurance
     </select>
@@ -16,20 +26,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where Insurance.insuranceID = FireInsurance.FinsuranceID AND insuranceID = #{insuranceID}
     </select>
     
-    <resultMap type = "HashMap" id="FireInsurance">
+    <resultMap type = "com.example.demo.model.Insurance.FireInsurance" id="FireInsurance">
    	 	<id column="insuranceID" property="insuranceID"/>
-   	 	<id column="insuranceName" property="insuranceName"/>
-   	 	<id column="insuranceFee" property="insuranceFee"/>
-   	 	<id column="insuranceType" property="insuranceType"/>
-   	 	<id column="insuranceManual" property="insuranceManual"/>
-   	 	<id column="insuranceSalesManual" property="insuranceSalesManual"/>
-   	 	<id column="directGuaranteedAmount" property="directGuaranteedAmount"/>
-   	 	<id column="directGuaranteedContent" property="directGuaranteedContent"/>
-   	 	<id column="fireGuaranteedAmount" property="fireGuaranteedAmount"/>
-   	 	<id column="fireGuaranteedContent" property="fireGuaranteedContent"/>
-   	 	<id column="refugeGuaranteedAmount" property="refugeGuaranteedAmount"/>
-   	 	<id column="refugeGuaranteedContent" property="refugeGuaranteedContent"/>
-    </resultMap>   
+   	 	<result column="insuranceName" property="insuranceName"/>
+   	 	<result column="insuranceFee" property="insuranceFee"/>
+   	 	<result column="insuranceType" property="insuranceType"/>
+   	 	<result column="insuranceManual" property="insuranceManual"/>
+   	 	<result column="insuranceSalesManual" property="insuranceSalesManual"/>
+   	 	<association property="directDamage" javaType="com.example.demo.model.Insurance.DamageInformation">
+   	 		<result column="directGuaranteedAmount" property="damageGuaranteedAmount"/>
+   	 		<result column="directGuaranteedContent" property="damageGuaranteedContent"/>
+   	 	</association>
+   	 	<association property="fireDamage" javaType="com.example.demo.model.Insurance.DamageInformation">
+			<result column="fireGuaranteedAmount" property="damageGuaranteedAmount"/>
+	   	 	<result column="fireGuaranteedContent" property="damageGuaranteedContent"/>
+   	 	</association>
+   	 	<association property="refugeDamage" javaType="com.example.demo.model.Insurance.DamageInformation">
+	   	 	<result column="refugeGuaranteedAmount" property="damageGuaranteedAmount"/>
+	   	 	<result column="refugeGuaranteedContent" property="damageGuaranteedContent"/>
+   	 	</association>
+    </resultMap>  
     
     <select id="ResultCInsurance" parameterType="int" resultMap="CarInsurance">
 		select insuranceID, insuranceName, insuranceFee, insuranceType, insuranceManual, insuranceSalesManual, 
@@ -39,21 +55,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where Insurance.insuranceID = CarInsurance.CinsuranceID AND Insurance.insuranceID = #{insuranceID}
     </select>
     
-        <resultMap type = "HashMap" id="CarInsurance">
+    <resultMap type = "com.example.demo.model.Insurance.CarInsurance" id="CarInsurance">
    	 	<id column="insuranceID" property="insuranceID"/>
-   	 	<id column="insuranceName" property="insuranceName"/>
-   	 	<id column="insuranceFee" property="insuranceFee"/>
-   	 	<id column="insuranceType" property="insuranceType"/>
-   	 	<id column="insuranceManual" property="insuranceManual"/>
-   	 	<id column="goodsGuaranteeContent" property="goodsGuaranteeContent"/>
-   	 	<id column="goodsGuaranteeLimit" property="goodsGuaranteeLimit"/>
-   	 	<id column="goodsSeparation" property="goodsSeparation"/>
-   	 	<id column="personalGuaranteeContent" property="personalGuaranteeContent"/>
-   	 	<id column="personalProvisionLimit" property="personalProvisionLimit"/>
-   	 	<id column="personalSeparation" property="personalSeparation"/>
-   	 	<id column="subscriptionFeeForAccidentalInjuries" property="subscriptionFeeForAccidentalInjuries"/>
-   	 	<id column="subscriptionFeeForInjury" property="subscriptionFeeForInjury"/>
-   	 	<id column="selfVehicleSeparation" property="selfVehicleSeparation"/>
+   	 	<result column="insuranceName" property="insuranceName"/>
+   	 	<result column="insuranceFee" property="insuranceFee"/>
+   	 	<result column="insuranceType" property="insuranceType"/>
+   	 	<result column="insuranceManual" property="insuranceManual"/>
+     	<result column="insuranceSalesManual" property="insuranceSalesManual"/> 	 	 	
+   	 	<association property="goodsIndemnification" javaType="com.example.demo.model.Insurance.Goods_Personal">
+   	 		<result column="goodsGuaranteeContent" property="guaranteeContent"/>
+   	 		<result column="goodsGuaranteeLimit" property="provisionLimit"/>
+   	 		<result column="goodsSeparation" property="separation"/>
+   	 	</association>
+   	 	<association property="personalIndemnification" javaType="com.example.demo.model.Insurance.Goods_Personal">
+			<result column="personalGuaranteeContent" property="guaranteeContent"/>
+	   	 	<result column="personalProvisionLimit" property="provisionLimit"/>
+	   	 	<result column="personalSeparation" property="separation"/>
+   	 	</association>
+   	 	<association property="selfVehicleDamage" javaType="com.example.demo.model.Insurance.SelfVehicleDamage">
+	   	 	<result column="subscriptionFeeForAccidentalInjuries" property="subscriptionFeeForAccidentalInjuries"/>
+	   	 	<result column="subscriptionFeeForInjury" property="subscriptionFeeForInjury"/>
+	   	 	<result column="selfVehicleSeparation" property="separation"/>
+   	 	</association>
     </resultMap>   
     
      <select id="ResultAInsurance" parameterType="int" resultMap="ActaulCostInsurance">
@@ -62,16 +85,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where Insurance.insuranceID = ActualCostInsurance.AinsuranceID AND insuranceID = #{insuranceID}
     </select>
     
-        <resultMap type = "HashMap" id="ActaulCostInsurance">
+    <resultMap type = "com.example.demo.model.Insurance.ActualCostInsurance" id="ActaulCostInsurance">
    	 	<id column="insuranceID" property="insuranceID"/>
-   	 	<id column="insuranceName" property="insuranceName"/>
-   	 	<id column="insuranceFee" property="insuranceFee"/>
-   	 	<id column="insuranceType" property="insuranceType"/>
-   	 	<id column="insuranceManual" property="insuranceManual"/>
-   	 	<id column="hospitalizationFee" property="hospitalizationFee"/>
-   	 	<id column="hospitalizationReason" property="hospitalizationReason"/>
-   	 	<id column="outpatientFee" property="outpatientFee"/>
-   	 	<id column="outpatientReason" property="outpatientReason"/>
-    </resultMap>   
+   	 	<result column="insuranceName" property="insuranceName"/>
+   	 	<result column="insuranceFee" property="insuranceFee"/>
+   	 	<result column="insuranceType" property="insuranceType"/>
+   	 	<result column="insuranceManual" property="insuranceManual"/>
+   	 	<result column="insuranceSalesManual" property="insuranceSalesManual"/>  	
+   	 	<association property="injuryHospitalization" javaType="com.example.demo.model.Insurance.Injury">
+   	 		<result column="hospitalizationFee" property="provisionFee"/>
+   	 		<result column="hospitalizationReason" property="provisionReason"/>
+   	 	</association>
+   	 	<association property="injuryOutpatient" javaType="com.example.demo.model.Insurance.Injury">
+			<result column="outpatientFee" property="provisionFee"/>
+	   	 	<result column="outpatientReason" property="provisionReason"/>
+   	 	</association>
+    </resultMap>  
+    
+    
+    <!-- Insert문 --> 
+    
+  
+    <insert id="InsertInsurance" parameterType="com.example.demo.model.Insurance.Insurance">
+    	insert into insurance values (#{insuranceID}, #{insuranceName},#{insuranceFee},#{insuranceType},#{insuranceManual}, #{insuranceSalesManual})
+    </insert>
+    
+    <insert id="InsertFireInsurance" parameterType="com.example.demo.model.Insurance.FireInsurance">
+    	insert into FireInsurance values 
+    	(#{insuranceID}, 
+    	#{directDamage.damageGuaranteedAmount},#{directDamage.damageGuaranteedContent},
+    	#{fireDamage.damageGuaranteedAmount}, #{fireDamage.damageGuaranteedContent}, 
+    	#{refugeDamage.damageGuaranteedAmount}, #{refugeDamage.damageGuaranteedContent})
+    </insert>
+    
+    <insert id="InsertCarInsurance" parameterType="com.example.demo.model.Insurance.CarInsurance">
+    	insert into CarInsurance values 
+    	(#{insuranceID}, 
+    	#{goodsIndemnification.guaranteeContent}, #{goodsIndemnification.provisionLimit}, #{goodsIndemnification.separation},
+    	#{personalIndemnification.guaranteeContent}, #{personalIndemnification.provisionLimit}, #{personalIndemnification.separation}, 
+    	#{selfVehicleDamage.subscriptionFeeForAccidentalInjuries}, #{selfVehicleDamage.subscriptionFeeForInjury}, #{selfVehicleDamage.separation})
+    </insert>
+    
+    <insert id="InsertActualCostInsurance" parameterType="com.example.demo.model.Insurance.ActualCostInsurance">
+    	insert into ActualCostInsurance values 
+    	(#{insuranceID}, 
+    	#{injuryHospitalization.provisionFee},#{injuryHospitalization.provisionReason},
+    	#{injuryOutpatient.provisionFee}, #{injuryOutpatient.provisionReason})
+    </insert>
     
 </mapper>

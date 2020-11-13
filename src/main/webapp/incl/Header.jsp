@@ -21,7 +21,7 @@
         <div class="row align-items-center">
           
           <div class="col-11 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="main.jsp" class="text-black h2 mb-0">보험회사<span class="text-primary">.</span> </a></h1>
+            <h1 class="mb-0 site-logo"><a href="main" class="text-black h2 mb-0">보험회사<span class="text-primary">.</span> </a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
@@ -30,9 +30,9 @@
 						<a href="InsuranceDesign.jsp" class="nav-link">상품설계하기</a>
 						<ul class="dropdown">
 							<li><a href = "InsuranceList"> 보험 리스트 </a></li>
-							<li><a href = "FInsuranceDesign.jsp"> 화재보험 </a></li>
-							<li><a href = "CInsuranceDesign.jsp">자동차보험</a></li>
-							<li><a href = "AInsuranceDesign.jsp">실비보험</a></li>
+							<li><a href = "FInsuranceDesign"> 화재보험 </a></li>
+							<li><a href = "CInsuranceDesign">자동차보험</a></li>
+							<li><a href = "AInsuranceDesign">실비보험</a></li>
 						</ul>
 					</li>
 					<li class="has-children">
