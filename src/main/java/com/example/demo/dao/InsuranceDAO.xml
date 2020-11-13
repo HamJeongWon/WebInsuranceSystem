@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="com.example.demo.dao.InsuranceDAO">
+
+    <select id="searchInsuranceIDandName" resultType="com.example.demo.model.Insurance.Insurance">
+		select * from Insurance
+    </select>
+    
+    <select id="ResultFInsurance" parameterType="int" resultMap="FireInsurance">
+		select insuranceID, insuranceName, insuranceFee, insuranceType, insuranceManual, insuranceSalesManual, 
+		directGuaranteedAmount, directGuaranteedContent, fireGuaranteedAmount, fireGuaranteedContent,
+		refugeGuaranteedAmount, refugeGuaranteedContent from Insurance, FireInsurance 
+		where Insurance.insuranceID = FireInsurance.FinsuranceID AND insuranceID = #{insuranceID}
+    </select>
+    
+    <resultMap type = "HashMap" id="FireInsurance">
+   	 	<id column="insuranceID" property="insuranceID"/>
+   	 	<id column="insuranceName" property="insuranceName"/>
+   	 	<id column="insuranceFee" property="insuranceFee"/>
+   	 	<id column="insuranceType" property="insuranceType"/>
+   	 	<id column="insuranceManual" property="insuranceManual"/>
+   	 	<id column="insuranceSalesManual" property="insuranceSalesManual"/>
+   	 	<id column="directGuaranteedAmount" property="directGuaranteedAmount"/>
+   	 	<id column="directGuaranteedContent" property="directGuaranteedContent"/>
+   	 	<id column="fireGuaranteedAmount" property="fireGuaranteedAmount"/>
+   	 	<id column="fireGuaranteedContent" property="fireGuaranteedContent"/>
+   	 	<id column="refugeGuaranteedAmount" property="refugeGuaranteedAmount"/>
+   	 	<id column="refugeGuaranteedContent" property="refugeGuaranteedContent"/>
+    </resultMap>   
+    
+    <select id="ResultCInsurance" parameterType="int" resultMap="CarInsurance">
+		select insuranceID, insuranceName, insuranceFee, insuranceType, insuranceManual, insuranceSalesManual, 
+		goodsGuaranteeContent,goodsGuaranteeLimit, goodsSeparation, personalGuaranteeContent, 
+		personalProvisionLimit, personalSeparation, subscriptionFeeForAccidentalInjuries, 
+		subscriptionFeeForInjury, selfVehicleSeparation from Insurance, CarInsurance 
+		where Insurance.insuranceID = CarInsurance.CinsuranceID AND Insurance.insuranceID = #{insuranceID}
+    </select>
+    
+        <resultMap type = "HashMap" id="CarInsurance">
+   	 	<id column="insuranceID" property="insuranceID"/>
+   	 	<id column="insuranceName" property="insuranceName"/>
+   	 	<id column="insuranceFee" property="insuranceFee"/>
+   	 	<id column="insuranceType" property="insuranceType"/>
+   	 	<id column="insuranceManual" property="insuranceManual"/>
+   	 	<id column="goodsGuaranteeContent" property="goodsGuaranteeContent"/>
+   	 	<id column="goodsGuaranteeLimit" property="goodsGuaranteeLimit"/>
+   	 	<id column="goodsSeparation" property="goodsSeparation"/>
+   	 	<id column="personalGuaranteeContent" property="personalGuaranteeContent"/>
+   	 	<id column="personalProvisionLimit" property="personalProvisionLimit"/>
+   	 	<id column="personalSeparation" property="personalSeparation"/>
+   	 	<id column="subscriptionFeeForAccidentalInjuries" property="subscriptionFeeForAccidentalInjuries"/>
+   	 	<id column="subscriptionFeeForInjury" property="subscriptionFeeForInjury"/>
+   	 	<id column="selfVehicleSeparation" property="selfVehicleSeparation"/>
+    </resultMap>   
+    
+     <select id="ResultAInsurance" parameterType="int" resultMap="ActaulCostInsurance">
+		select insuranceID, insuranceName, insuranceFee, insuranceType, insuranceManual, insuranceSalesManual, 
+		hospitalizationFee, hospitalizationReason, outpatientFee, outpatientReason from Insurance, ActualCostInsurance 
+		where Insurance.insuranceID = ActualCostInsurance.AinsuranceID AND insuranceID = #{insuranceID}
+    </select>
+    
+        <resultMap type = "HashMap" id="ActaulCostInsurance">
+   	 	<id column="insuranceID" property="insuranceID"/>
+   	 	<id column="insuranceName" property="insuranceName"/>
+   	 	<id column="insuranceFee" property="insuranceFee"/>
+   	 	<id column="insuranceType" property="insuranceType"/>
+   	 	<id column="insuranceManual" property="insuranceManual"/>
+   	 	<id column="hospitalizationFee" property="hospitalizationFee"/>
+   	 	<id column="hospitalizationReason" property="hospitalizationReason"/>
+   	 	<id column="outpatientFee" property="outpatientFee"/>
+   	 	<id column="outpatientReason" property="outpatientReason"/>
+    </resultMap>   
+    
+</mapper>
