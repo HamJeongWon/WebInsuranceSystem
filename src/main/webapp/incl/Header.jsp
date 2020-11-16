@@ -57,11 +57,11 @@
 								<li><a href="MakeContract?action=List">계약서작성하기</a></li>
 							</ul></li>				
 					<li class="has-children">
-						<a href="InsuranceTreatment.jsp" class="nav-link">보험처리하기</a>
+						<a href="InsuranceTreatment" class="nav-link">보험처리하기</a>
 						<ul class="dropdown">
-							<li><a href="AccidentReception?action=showID">사고내용작성하기</a></li>
-							<li><a href="CalculateAccidentFund?action=showAccidentID">결정보험금 산출하기</a></li>
-							<li><a href="PaymentAccidentFund?action=showAccidentID">결정보험금 지급하기</a></li>
+							<li><a href="AccidentReception">사고내용작성하기</a></li>
+							<li><a href="CalculateAccidentFund">결정보험금 산출하기</a></li>
+							<li><a href="PaymentAccidentFund">결정보험금 지급하기</a></li>
 						</ul>
 					</li>
 				</ul>

@@ -16,4 +16,6 @@ public interface InsuranceDAO{
 	
 	public Map<String, Object> ResultAInsurance(int insuranceID) throws Exception;
 
+	public float getInsuranceFee(int insuranceID) throws Exception;
+
 }

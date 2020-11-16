@@ -5,6 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.example.demo.dao.InsuranceDAO">
 
+	<select id="getInsuranceFee" resultType="Float">
+		select insuranceFee from Insurance where insuranceID = #{insuranceID}
+	</select>
+
     <select id="searchInsuranceIDandName" resultType="com.example.demo.model.Insurance.Insurance">
 		select * from Insurance
     </select>

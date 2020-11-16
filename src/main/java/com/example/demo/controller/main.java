@@ -9,6 +9,7 @@ public class main {
 		
     @RequestMapping("/main") 
     private String boardList(Model model) throws Exception{
+    	System.out.println("reset");
         return "main"; 
     }
 }
