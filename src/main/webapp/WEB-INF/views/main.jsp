@@ -76,7 +76,7 @@
 		                <p> 보험들의 상품, 판매 메뉴얼들을 확인하여 신규 혹은 기존의 고객들에게 상품을 가입시킬 수 있다.</p>
 		              </blockquote>
 		              <figure class="mb-4 d-flex align-items-center justify-content-center">
-		                <p><a href="SalesActivityDesign.jsp" target="_blank">영업 활동하기</a></p>
+		                <p><a href="SalesActivityDesign" target="_blank">영업 활동하기</a></p>
 		              </figure>
 		
 		              

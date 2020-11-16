@@ -43,10 +43,10 @@
 						</ul>
 					</li>
 					<li class="has-children">
-						<a href="SalesActivityDesign.jsp" class="nav-link">영업활동</a>
+						<a href="SalesActivityDesign" class="nav-link">영업활동</a>
 						<ul class="dropdown">
-							<li><a href="./Menual1">메뉴얼 확인하기</a></li>
-							<li><a href="Subscription.jsp">상품 가입 신청하기</a></li>
+							<li><a href="Menual">메뉴얼 확인하기</a></li>
+							<li><a href="ProductSubscription">상품 가입 신청하기</a></li>
 						</ul>
 					</li>
 					<li><a href="AcceptInsuranceSubscription?action=showID" class="nav-link">인수심사하기</a></li>					

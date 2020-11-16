@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import java.util.List;
+import java.util.Vector;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +17,9 @@ public interface InsuranceDAO{
 	
 	public int CheckInsuranceName(String record);
 	
-	public List<Insurance> searchInsuranceIDandName() throws Exception;
+	public List<Insurance> searchInsuranceIDandName() throws Exception;	
+	
+	public Insurance FindInsurance(int InsuranceID) throws Exception;
 
 	public FireInsurance ResultFInsurance(int insuranceID) throws Exception;
 
@@ -31,5 +34,7 @@ public interface InsuranceDAO{
 	public void InsertCarInsurance(CarInsurance carInsurance);
 	
 	public void InsertActualCostInsurance(ActualCostInsurance actualCostInsurance);
+
+	public Vector<Insurance> InsuranceNameVector(String insuranceType);
 
 }

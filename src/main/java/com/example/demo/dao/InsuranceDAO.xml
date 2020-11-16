@@ -19,6 +19,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from Insurance
     </select>
     
+    <select id="FindInsurance" parameterType="int" resultType="com.example.demo.model.Insurance.Insurance">
+		 select * from Insurance where insuranceID = #{insuranceID}
+    </select>  
+      
+    <select id="InsuranceNameVector" parameterType="String" resultType="com.example.demo.model.Insurance.Insurance">
+		 select * from Insurance where insuranceType = #{insuranceType}
+    </select>  
+    
     <select id="ResultFInsurance" parameterType="int" resultMap="FireInsurance">
 		select insuranceID, insuranceName, insuranceFee, insuranceType, insuranceManual, insuranceSalesManual, 
 		directGuaranteedAmount, directGuaranteedContent, fireGuaranteedAmount, fireGuaranteedContent,

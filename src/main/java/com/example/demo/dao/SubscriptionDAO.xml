@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="com.example.demo.dao.SubscriptionDAO">
+
+ 	<!-- Select문 --> 
+    
+    <select id="SubscriptionVector" resultType="com.example.demo.model.Subscription.Subscription">
+		select * from Subscription where subscriptionStatus = true
+    </select>
+    
+    <!-- where에서 status = true 조건 삭제 -->
+    <select id="InsuranceTypeVector" parameterType="int" resultType="String">
+		select insuranceType from insurance where insuranceID in (select insuranceID from subscription where customerID = #{customerID})
+    </select>
+ 	
+ 	<!--  insert -->
+    <select id="insertSubscription" parameterType="int">
+		insert into Subscription values(#{insuranceID}, #{customerID}, null, false)
+    </select>
+     
+</mapper>
