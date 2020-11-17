@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.Insurance;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
