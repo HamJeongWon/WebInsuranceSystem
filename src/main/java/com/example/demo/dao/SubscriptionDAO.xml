@@ -5,13 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.example.demo.dao.SubscriptionDAO">
 
-<<<<<<< HEAD
     <select id="showSubscriptionCustomer" resultType="com.example.demo.model.Subscription.Subscription">
 		select insuranceID, customerID from subscription where subscriptionStatus = 1 and contractID !='null'
     </select>
  
-    
-=======
  	<!-- Select문 --> 
     
     <select id="SubscriptionVector" resultType="com.example.demo.model.Subscription.Subscription">
@@ -28,5 +25,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into Subscription values(#{insuranceID}, #{customerID}, null, false)
     </select>
      
->>>>>>> kim
 </mapper>
