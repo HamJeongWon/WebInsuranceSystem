@@ -5,9 +5,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.example.demo.dao.SubscriptionDAO">
 
+<<<<<<< HEAD
     <select id="showSubscriptionCustomer" resultType="com.example.demo.model.Subscription.Subscription">
 		select insuranceID, customerID from subscription where subscriptionStatus = 1 and contractID !='null'
     </select>
  
     
+=======
+ 	<!-- Select문 --> 
+    
+    <select id="SubscriptionVector" resultType="com.example.demo.model.Subscription.Subscription">
+		select * from Subscription where subscriptionStatus = true
+    </select>
+    
+    <!-- where에서 status = true 조건 삭제 -->
+    <select id="InsuranceTypeVector" parameterType="int" resultType="String">
+		select insuranceType from insurance where insuranceID in (select insuranceID from subscription where customerID = #{customerID})
+    </select>
+ 	
+ 	<!--  insert -->
+    <select id="insertSubscription" parameterType="int">
+		insert into Subscription values(#{insuranceID}, #{customerID}, null, false)
+    </select>
+     
+>>>>>>> kim
 </mapper>

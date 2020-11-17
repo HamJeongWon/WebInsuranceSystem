@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="com.example.demo.dao.CustomerDAO">
+
+ 	<!-- Select문 --> 
+
+    <select id="SelectMaxID" resultType = "int">
+		select Max(CustomerID) as CustomerID from Customer
+    </select>
+    
+    <select id="CheckInsuranceName" parameterType="string" resultType = "int">
+		SELECT EXISTS (select InsuranceName from Insurance where InsuranceName = #{record}) as isChk
+    </select>
+       
+    <!--  insert -->
+    <insert id="insertBuilding" parameterType="HashMap">
+		insert into Building values(#{customerID}, #{buildingPrice}, #{buildingAddress}, #{buildingScale})
+    </insert>
+ 
+    <insert id="insertCar" parameterType="HashMap">
+		insert into Car values(#{customerID}, #{carNumber}, #{carType}, #{carCareer}, #{licenseType})
+    </insert>
+
+	<insert id="insertActualCost" parameterType="HashMap">
+		insert into
+		ActualCost values(#{customerID}, #{bloodType}, #{FamilyHistory},
+		#{diseaseHistory})
+	</insert>
+
+	<insert id="insertCustomer" parameterType="com.example.demo.model.Customer.Customer">
+		insert into Customer values(#{customerID}, #{phoneNum}, #{customerName})
+	</insert>
+
+	<insert id="insertPersonalInformation" parameterType="HashMap">
+		insert into PersonalInformation values(#{customerID}, #{accidentHistory}, #{accountNumber}, 
+		#{residentRegistrationNumber}, #{gender}, #{job}, #{property})
+	</insert>
+</mapper>

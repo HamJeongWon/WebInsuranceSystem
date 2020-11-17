@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Vector;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -22,6 +24,10 @@ public class InsuranceService {
         return insuranceDAO.searchInsuranceIDandName();
     }
     
+	public Insurance FindInsurance(int insuranceID) throws Exception{
+		return insuranceDAO.FindInsurance(insuranceID);
+	}
+
     public FireInsurance ResultFInsurance(int insuranceID) throws Exception {   	
 		return insuranceDAO.ResultFInsurance(insuranceID);
     }
@@ -56,5 +62,9 @@ public class InsuranceService {
 	
 	public void InsertActualCostInsurance(ActualCostInsurance insurance) {
 		insuranceDAO.InsertActualCostInsurance(insurance);
+	}
+
+	public Vector<Insurance> InsuranceNameVector(String InsuranceType) {
+		return insuranceDAO.InsuranceNameVector(InsuranceType);
 	}
 }
