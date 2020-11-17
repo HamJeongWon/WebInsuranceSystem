@@ -32,4 +32,6 @@ public interface InsuranceDAO{
 	
 	public void InsertActualCostInsurance(ActualCostInsurance actualCostInsurance);
 
+	public float getInsuranceFee(int insuranceID) throws Exception;
+
 }
