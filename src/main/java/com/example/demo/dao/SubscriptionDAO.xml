@@ -5,6 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.example.demo.dao.SubscriptionDAO">
 
+
+    <select id="showAcceptanceAprove" resultType="com.example.demo.model.Subscription.Subscription">
+		select insuranceID, customerID from subscription where subscriptionStatus = 0
+    </select>
+
     <select id="showSubscriptionCustomer" resultType="com.example.demo.model.Subscription.Subscription">
 		select insuranceID, customerID from subscription where subscriptionStatus = 1 and contractID !='null'
     </select>
@@ -21,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
  	
  	<!--  insert -->
-    <select id="insertSubscription" parameterType="int">
+    <select id="insertSubscription" parameterType="Integer">
 		insert into Subscription values(#{insuranceID}, #{customerID}, null, false)
     </select>
      

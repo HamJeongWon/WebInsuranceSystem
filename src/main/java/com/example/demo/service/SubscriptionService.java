@@ -30,5 +30,9 @@ public class SubscriptionService {
 		subscriptionDAO.insertSubscription(insuranceID, customerID);	
 	}
 	
+	public List<Subscription> showAcceptanceAprove() throws Exception {
+		return subscriptionDAO.showAcceptanceAprove();
+	}
+	
    
 }

@@ -49,7 +49,7 @@
 							<li><a href="ProductSubscription">상품 가입 신청하기</a></li>
 						</ul>
 					</li>
-					<li><a href="AcceptInsuranceSubscription?action=showID" class="nav-link">인수심사하기</a></li>					
+					<li><a href="InsuranceSubscription" class="nav-link">인수심사하기</a></li>					
 					<li class="has-children"><a href="ContractContrallDesign.jsp" class="nav-link">계약관리하기</a>
 							<ul class="dropdown">
 								<li><a href="PaymentControll">납부관리하기</a></li>
