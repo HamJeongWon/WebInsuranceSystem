@@ -1,6 +1,6 @@
 package com.example.demo.model.Customer;
 
-public class PersonalInformation {
+public class PersonalInformation extends Customer{
 
 	public enum Job {
 		soldier, driver, officeWorker, constructionLaborer, fireman, policeman, theOther

@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.example.demo.dao.SubscriptionDAO">
 
+    <!-- Select문 --> 
 
     <select id="showAcceptanceAprove" resultType="com.example.demo.model.Subscription.Subscription">
 		select insuranceID, customerID from subscription where subscriptionStatus = 0
@@ -13,9 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="showSubscriptionCustomer" resultType="com.example.demo.model.Subscription.Subscription">
 		select insuranceID, customerID from subscription where subscriptionStatus = 1 and contractID !='null'
     </select>
- 
- 	<!-- Select문 --> 
-    
+     
     <select id="SubscriptionVector" resultType="com.example.demo.model.Subscription.Subscription">
 		select * from Subscription where subscriptionStatus = true
     </select>
@@ -29,5 +28,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="insertSubscription" parameterType="Integer">
 		insert into Subscription values(#{insuranceID}, #{customerID}, null, false)
     </select>
+
+    <!-- update -->
+    <update id="updateSubscriptionStatus" parameterType="Integer">
+	update subscription set subscriptionStatus = true where customerID = #{customerID} and insuranceID = #{insuranceID}
+    </update>
+
+    <!-- delete -->
+    <delete id="deleteSubscription" parameterType="Integer">
+	delete from subscription where customerID= #{customerID} and insuranceID = #{insuranceID}
+    </delete>
+
      
 </mapper>

@@ -6,6 +6,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.example.demo.dao.AccidentDAO">
 
 	
+    <!--select -->
+
+
+	<select id="showAllAccidentIDFromCalculateAccidentFund"
+		resultType="com.example.demo.model.Accident.Accident">
+		select * from accident where payInsurancePremium = false and insurancePremiumCause is null and insurancePremium =0
+	</select>
 
 	<select id="showAllAccidentIDFromPaymentAccidentFund"
 		resultType="com.example.demo.model.Accident.Accident">
@@ -17,31 +24,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select Max(accidentID) as
 		accidentID from accident
 	</select>
-
-	<select id="insertAccident"
-		resultType="com.example.demo.model.Accident.Accident">
-		insert into Accident
-		values(#{accidentID},#{accidentDate},#{accidentCause},#{accidentLocation},#{accidentTime},#{expertOpinion},null,0,false,#{customerID},#{insuranceID})
-	</select>
-
-
+	
 	<select id="findAccident"
 		resultType="com.example.demo.model.Accident.Accident">
 		select * from Accident where accidentID = #{accidentID}
 	</select>
 
-	<select id="insertInsurancePayment"
-		resultType="com.example.demo.model.Accident.Accident">
+    <!--insert -->
+	<insert id="insertAccident"
+		parameterType="com.example.demo.model.Accident.Accident">
+		insert into Accident
+		values(#{accidentID},#{accidentDate},#{accidentCause},#{accidentLocation},#{accidentTime},#{expertOpinion},null,0,false,#{customerID},#{insuranceID})
+	</insert>
+
+
+	
+    <!--update -->
+	<update id="insertInsurancePayment"
+		parameterType="com.example.demo.model.Accident.Accident">
 		update Accident set insurancePremiumCause =
 		#{insurancePremiumCause}, insurancePremium= #{insurancePremium} where
 		accidentID = #{accidentID}
-	</select>
+	</update>
 
-	<select id="updatePayInsurancePremium"
-		resultType="com.example.demo.model.Accident.Accident">
+	<update id="updatePayInsurancePremium"
+		parameterType="com.example.demo.model.Accident.Accident">
 		update Accident set PayInsurancePremium =
 		#{payInsurancePremium} where accidentID = #{accidentID}
-	</select>
+	</update>
 
 
 

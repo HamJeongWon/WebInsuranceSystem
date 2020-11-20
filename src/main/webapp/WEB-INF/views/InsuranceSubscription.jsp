@@ -71,7 +71,7 @@
 
 								<div class="col col-3">
 									<form
-										action=./AcceptInsuranceSubscription?action=showCustomerInformation
+										action=JudgementInsuranceSubscription
 										method="post">
 										<input type="hidden" name="num" value=<%=no + 1%>> <input
 											type="submit" value="Á¶È¸">

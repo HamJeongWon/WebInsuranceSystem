@@ -25,29 +25,22 @@ public class PaymentAccidentFund {
 	@RequestMapping("/ResultMentPaymentAccidentFund")
 	private String CalculateAccidentFund(HttpServletRequest request,Model model) throws Exception{
 		int accidentID = Integer.parseInt(request.getParameter("accidentID"));
-		Accident accident =insuranceTreatmentService.findAccident(accidentID);
-
-		accident.setPayInsurancePremium(true);
-		insuranceTreatmentService.updatePayInsurancePremium(accident);
+		insuranceTreatmentService.CalculateAccidentFund(accidentID);
+		
 		return "ResultMentPaymentAccidentFund";
 	}
 	
 	@RequestMapping("/PaymentAccidentFund")
 	private String PaymentAccidentFunds(HttpServletRequest request,Model model) throws Exception{
-		List<Integer> accidentIDListFromPaymentAccidentFund = new ArrayList<Integer>();
-		for(int i=0; i< insuranceTreatmentService.showAllAccidentIDFromPaymentAccidentFund().size(); i++) {
-			accidentIDListFromPaymentAccidentFund.add(insuranceTreatmentService.showAllAccidentIDFromPaymentAccidentFund().get(i).getAccidentID());
-		}
-		request.setAttribute("accidentIDVector", accidentIDListFromPaymentAccidentFund);
+		model.addAttribute("accidentIDVector", insuranceTreatmentService.PaymentAccidentFunds());
 		return "PaymentAccidentFund";
 	}
 	
 	@RequestMapping("/ResultPaymentAccidentFund")
 	private String ResultPaymentAccidentFund(HttpServletRequest request,Model model) throws Exception{
 		int accidentID = Integer.parseInt(request.getParameter("accidentID"));
-		Accident accident = insuranceTreatmentService.findAccident(accidentID);
-
-		request.setAttribute("accident", accident);
+		
+		model.addAttribute("accident", insuranceTreatmentService.ResultPaymentAccidentFund(accidentID));
 		return "ResultPaymentAccidentFund";
 	}
 	

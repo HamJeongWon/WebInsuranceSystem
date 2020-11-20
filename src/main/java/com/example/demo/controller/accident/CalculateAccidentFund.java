@@ -21,12 +21,8 @@ public class CalculateAccidentFund {
 	InsuranceTreatmentService insuranceTreatmentService;
 
 	@RequestMapping("/CalculateAccidentFund")
-	private String CalculateAccidentFunds(HttpServletRequest request,Model model) throws Exception{
-		List<Integer> accidentIDListFromCalculateAccidentFund = new ArrayList<Integer>();
-		for(int i=0; i< insuranceTreatmentService.showAllAccidentIDFromCalculateAccidentFund().size(); i++) {
-			accidentIDListFromCalculateAccidentFund.add(insuranceTreatmentService.showAllAccidentIDFromCalculateAccidentFund().get(i).getAccidentID());
-		}
-		request.setAttribute("accidentIDVector", accidentIDListFromCalculateAccidentFund);
+	private String CalculateAccidentFunds(Model model) throws Exception{
+		model.addAttribute("accidentIDVector", insuranceTreatmentService.CalculateAccidentFunds());
 		return "CalculateAccidentFund";
 	}
 	
@@ -35,41 +31,17 @@ public class CalculateAccidentFund {
 	@RequestMapping("/InsertCalculateAccidentFund")
 	private String InsertCalculateAccidentFund(HttpServletRequest request,Model model) throws Exception{
 		int accidentID = Integer.parseInt(request.getParameter("accidentID"));
-		Accident accident = insuranceTreatmentService.findAccident(accidentID);
-		if(accident.getInsurancePremium() != 0 && accident.getInsurancePremiumCause() != null) {
-			//이미 보험금이 산출되었을 경우
-			return "error";
-		}else {
-			request.setAttribute("maxInsurancePremium",insuranceTreatmentService.getInsuranceFee(accident.getInsuranceID()));
-			request.setAttribute("accident", accident);
-			return "InsertCalculateAccidentFund";
-		}
-
-
+		return insuranceTreatmentService.InsertCalculateAccidentFund(accidentID,model);
 	}
+	
 	@RequestMapping("/ResultCalculateAccidentFund")
 	private String ResultCalculateAccidentFund(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
 		int accidentID = Integer.parseInt(request.getParameter("accidentID"));
-		Accident accident =insuranceTreatmentService.findAccident(accidentID);
-
 		String insurancePremium =request.getParameter("insurancePremium");
 		String insurancePremiumCause = request.getParameter("insurancePremiumCause");
 		
+		return insuranceTreatmentService.ResultCalculateAccidentFund(accidentID,insurancePremium,insurancePremiumCause, response,model);
 		
-		
-
-		if(insurancePremium=="" || insurancePremiumCause=="") {
-			response.sendRedirect("incl/alert.jsp");
-			return null;
-
-		}else {
-			accident.setInsurancePremium(Integer.parseInt(insurancePremium));
-			accident.setInsurancePremiumCause(insurancePremiumCause);
-
-			insuranceTreatmentService.insertInsurancePayment(accident);
-			request.setAttribute("accident", accident);
-			return "ResultCalculateAccidentFund";
-		}
 	}
 
 
