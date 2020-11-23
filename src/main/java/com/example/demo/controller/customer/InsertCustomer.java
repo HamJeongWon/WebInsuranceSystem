@@ -1,9 +1,9 @@
 package com.example.demo.controller.customer;
+
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -11,7 +11,6 @@ import java.util.Vector;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -147,7 +146,7 @@ public class InsertCustomer {
 	      Building building = new Building();
 	      building.setBuildingAddress(request.getParameter("buildingAddress"));
 	      building.setBuildingPrice(Integer.parseInt(request.getParameter("buildingPrice")));
-	      building.setBuildingScale(request.getParameter("buildingScale"));       
+	      building.setBuildingScale(request.getParameter("buildingScale")); 
 	      customerService.insertBuilding(building, CustomerID);
 	      
 	      model.addAttribute("CustomerID", CustomerID);

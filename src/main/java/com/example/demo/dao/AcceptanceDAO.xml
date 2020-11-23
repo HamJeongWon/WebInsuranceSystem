@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="com.example.demo.dao.AcceptanceDAO"> 
+
+    <select id="SelectMaxID" resultType = "int">
+		select Max(acceptanceID) as acceptanceID from Acceptance
+    </select>
+    
+    <insert id="InsertAcceptanceGuide" parameterType="com.example.demo.model.Acceptance.AcceptanceGuide">
+    	insert into Acceptance (acceptanceID, riskEvaluation, scamCase, insuranceID) values (#{acceptanceID}, #{riskEvaluation}, #{ScamCase}, #{InsuranceID})
+    </insert>
+    
+    <select id="searchAcceptanceForInsurance" parameterType="string" resultType="com.example.demo.model.Acceptance.AcceptanceGuide">
+		select acceptance.acceptanceid, acceptance.riskEvaluation, acceptance.scamcase, insurance.insuranceid from insurance, 
+		acceptance where insurance.insuranceid = acceptance.insuranceid AND insurance.insuranceType = #{insuranceType}
+    </select>
+    
+   	<select id="SearchNullAcceptanceInsuranceID" resultType="com.example.demo.model.Insurance.Insurance">
+		select Insurance.InsuranceID, insuranceName, insuranceType from Insurance LEFT JOIN Acceptance 
+		ON Insurance.insuranceID = Acceptance.insuranceID where Acceptance.Acceptanceid is null
+    </select>
+    
+</mapper>

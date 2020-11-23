@@ -5,8 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.example.demo.dao.AccidentDAO">
 
-	<select id="showAllAccidentIDFromCalculateAccidentFund"
-		resultType="com.example.demo.model.Accident.Accident">
+	<select id="showAllAccidentIDFromCalculateAccidentFund" resultType="com.example.demo.model.Accident.Accident">
 		select * from accident where payInsurancePremium = false
 		and insurancePremiumCause is null and insurancePremium =0
 	</select>
@@ -18,8 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="SelectMaxID" resultType="Integer">
-		select Max(accidentID) as
-		accidentID from accident
+		select Max(accidentID) as accidentID from accident
 	</select>
 
 	<select id="insertAccident"
@@ -27,7 +25,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into Accident
 		values(#{accidentID},#{accidentDate},#{accidentCause},#{accidentLocation},#{accidentTime},#{expertOpinion},null,0,false,#{customerID},#{insuranceID})
 	</select>
-
 
 	<select id="findAccident"
 		resultType="com.example.demo.model.Accident.Accident">

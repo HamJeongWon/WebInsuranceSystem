@@ -27,7 +27,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 				<ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
 					<li class="has-children">
-						<a href="InsuranceDesign.jsp" class="nav-link">상품설계하기</a>
+						<a href="InsuranceDesign" class="nav-link">상품설계하기</a>
 						<ul class="dropdown">
 							<li><a href = "InsuranceList"> 보험 리스트 </a></li>
 							<li><a href = "FInsuranceDesign"> 화재보험 </a></li>
@@ -36,7 +36,7 @@
 						</ul>
 					</li>
 					<li class="has-children">
-						<a href="AcceptanceGuide.jsp" class="nav-link">인수정책수립하기</a>
+						<a href="AcceptanceGuide" class="nav-link">인수정책수립하기</a>
 						<ul class="dropdown">
 							<li><a href="ShowAcceptanceGuide">인수지침서 보기</a></li>
 							<li><a href="SearchNullAcceptanceGuide">인수지침서 설계</a></li>

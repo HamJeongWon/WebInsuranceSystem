@@ -16,12 +16,9 @@ import com.example.demo.service.InsuranceTreatmentService;
 @Controller
 public class PaymentAccidentFund {
 
-	
 	@Resource(name="com.example.demo.service.InsuranceTreatmentService")
 	InsuranceTreatmentService insuranceTreatmentService;
-	
-	
-	
+		
 	@RequestMapping("/ResultMentPaymentAccidentFund")
 	private String CalculateAccidentFund(HttpServletRequest request,Model model) throws Exception{
 		int accidentID = Integer.parseInt(request.getParameter("accidentID"));

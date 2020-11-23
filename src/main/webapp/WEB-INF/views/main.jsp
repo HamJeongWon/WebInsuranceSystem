@@ -49,7 +49,7 @@
 		                <p> 이 보험시스템에서는 3가지 타입의 보험을 설계할 수 있다. 그 타입으로는 화재보험, 자동차보험, 실비보험이 존재하는데 같은 타입의 보험이더라도 보장내용과 보험금에 따라 다르게 설계가 가능하다.</p>
 		              </blockquote>
 		              <figure class="mb-4 d-flex align-items-center justify-content-center">
-		                <p><a href="InsuranceDesign.jsp" target="_blank">상품 설계하기</a></p>
+		                <p><a href="InsuranceDesign" target="_blank">상품 설계하기</a></p>
 		              </figure>
 		            </div>
 		          </div>
@@ -62,7 +62,7 @@
 		                <p> 고객이 보험에 가입을 신청하면 인수를 승인하기 위해 참고되는 인수지침서를 만들거나 확인할 수 있다.</p>
 		              </blockquote>
 		              <figure class="mb-4 d-flex align-items-center justify-content-center">
-		                <p><a href="AcceptanceGuide.jsp" target="_blank">인수 정책 수립하기</a></p>
+		                <p><a href="AcceptanceGuide" target="_blank">인수 정책 수립하기</a></p>
 		              </figure>
 		              
 		            </div>
@@ -119,7 +119,7 @@
 		                <p> 고객이 사고가 났을 때 해당 사고를 접수하고 결정보험금을 산출하여 지급할 수 있다.</p>
 		              </blockquote>
 		              <figure class="mb-4 d-flex align-items-center justify-content-center">
-		                <p><a href="InsuranceTreatment.jsp" target="_blank">보험 처리하기</a></p>
+		                <p><a href="InsuranceTreatment" target="_blank">보험 처리하기</a></p>
 		              </figure>
 		
 		            </div>

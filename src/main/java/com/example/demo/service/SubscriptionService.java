@@ -1,15 +1,11 @@
 package com.example.demo.service;
 
-import java.util.List;
 import java.util.Vector;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
-import com.example.demo.dao.CustomerDAO;
 import com.example.demo.dao.SubscriptionDAO;
-import com.example.demo.model.Insurance.Insurance.InsuranceType;
 import com.example.demo.model.Subscription.Subscription;
-import com.example.demo.model.Insurance.Insurance;
 
 
 @Service("com.example.demo.service.SubscriptionService")
