@@ -8,6 +8,8 @@ import java.util.Vector;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.mapping.ResultMap;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.AcceptanceDAO;
@@ -16,6 +18,7 @@ import com.example.demo.dao.CustomerDAO;
 import com.example.demo.dao.SubscriptionDAO;
 import com.example.demo.model.Subscription.Subscription;
 import com.example.demo.model.Acceptance.AcceptanceGuide;
+import com.example.demo.model.Customer.ActualCost;
 import com.example.demo.model.Customer.Customer;
 
 
@@ -83,6 +86,7 @@ public class SubscriptionService {
 		// ���� ������ ���� �� ���� �Ʒ� ������ ��������
 		switch (this.customerDAO.getInsuranceType2(insuranceID).getInsuranceType()) {
 		case Fire: // ȭ�纸��
+			
 			request.setAttribute("insurance", this.customerDAO.findBuildingCustomer(customerID));
 			break;
 		case Car:// �ڵ�������
@@ -90,7 +94,13 @@ public class SubscriptionService {
 			
 			break;
 		case ActualCost:// �Ǻ���
-			request.setAttribute("insurance", this.customerDAO.findActualCostCustomer(customerID));
+			String[] famillyHistoryArr = null;
+			ActualCost actualCost= this.customerDAO.findActualCostCustomer(customerID);
+			HashMap<String, String> famillyHistory = new HashMap<String, String>();
+			famillyHistoryArr = customerDAO.findActualCostCustomer(customerID).getTempFamilyHistory().split(":");
+			famillyHistory.put(famillyHistoryArr[0], famillyHistoryArr[1]);
+			actualCost.setFamilyHistory(famillyHistory);
+			request.setAttribute("insurance", actualCost);
 			break;
 		}
 		

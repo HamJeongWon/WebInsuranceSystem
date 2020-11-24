@@ -30,6 +30,7 @@ public class InsuranceTreatmentService {
 	
 
 	public List<Integer> showSubscriptionCustomer() throws Exception{
+		accidentIDList = new ArrayList<Integer>();
 		for(int i=0; i<subscriptionDAO.showSubscriptionCustomer().size(); i++) {
 			accidentIDList.add(subscriptionDAO.showSubscriptionCustomer().get(i).getInsuranceID());
 			accidentIDList.add(subscriptionDAO.showSubscriptionCustomer().get(i).getCustomerID());

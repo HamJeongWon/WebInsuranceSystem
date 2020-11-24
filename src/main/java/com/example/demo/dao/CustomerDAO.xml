@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT EXISTS (select InsuranceName from Insurance where InsuranceName = #{record}) as isChk
     </select>
 
+
     <select id="getInsuranceType2" resultType = "com.example.demo.model.Insurance.Insurance">
 		select insuranceType from insurance where insuranceID = #{insuranceID}
     </select>
@@ -47,17 +48,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap> 
 
     <select id="findActualCostCustomer" parameterType="int" resultMap="ActualCost">
-		select * from ActualCost where AcustomerID = #{customerID}
+		select * from ActualCost where AcustomerID = #{customerID} 
+
     </select>
     <resultMap type = "com.example.demo.model.Customer.ActualCost" id="ActualCost">
    	 	<id column="AcustomerID" property="customerID"/>
+		<id column="familyHistory" property="tempFamilyHistory"/>
 
     </resultMap> 
-       
-	<select id="CheckInsuranceName" parameterType="string" resultType="int">
-		SELECT EXISTS (select InsuranceName from Insurance where
-		InsuranceName = #{record}) as isChk
-	</select>
+  
 
 	<select id="getInsuranceType" parameterType="int" resultType="String">
 		select insuranceType from insurance where insuranceID = #{insuranceID}

@@ -4,9 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.example.demo.dao.AccidentDAO">
-
 	
     <!--select -->
+
+    <select id="showAllAccidentIDFromCalculateAccidentFund" resultType="com.example.demo.model.Accident.Accident">
+        select * from accident where payInsurancePremium = false and insurancePremiumCause is null and insurancePremium =0 
+    </select>
 
 	<select id="showAllAccidentIDFromPaymentAccidentFund"
 		resultType="com.example.demo.model.Accident.Accident">
