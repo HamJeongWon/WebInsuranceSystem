@@ -22,7 +22,5 @@ public interface AccidentDAO {
 	public void updatePayInsurancePremium(Accident accident)throws Exception;
 
 	public List<Accident> showAllAccidentIDFromPaymentAccidentFund()throws Exception;
-	
-
 
 }

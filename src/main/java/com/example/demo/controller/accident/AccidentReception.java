@@ -12,7 +12,6 @@ import com.example.demo.service.InsuranceTreatmentService;
 
 @Controller
 public class AccidentReception {
-	//private List<Integer> accidentIDList = new ArrayList<Integer>();
 	@Resource(name="com.example.demo.service.InsuranceTreatmentService")
 	InsuranceTreatmentService insuranceTreatmentService;
 	

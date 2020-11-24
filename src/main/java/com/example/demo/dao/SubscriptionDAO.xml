@@ -38,6 +38,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <delete id="deleteSubscription" parameterType="Integer">
 	delete from subscription where customerID= #{customerID} and insuranceID = #{insuranceID}
     </delete>
-
      
 </mapper>

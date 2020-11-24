@@ -9,21 +9,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import com.example.demo.dao.AcceptanceDAO;
 import com.example.demo.dao.ContractDAO;
 import com.example.demo.dao.CustomerDAO;
 import com.example.demo.dao.SubscriptionDAO;
-import com.example.demo.model.Insurance.Insurance.InsuranceType;
 import com.example.demo.model.Subscription.Subscription;
 import com.example.demo.model.Acceptance.AcceptanceGuide;
-import com.example.demo.model.Customer.ActualCost;
-import com.example.demo.model.Customer.Building;
-import com.example.demo.model.Customer.Car;
 import com.example.demo.model.Customer.Customer;
-import com.example.demo.model.Customer.PersonalInformation;
-import com.example.demo.model.Insurance.Insurance;
 
 
 @Service("com.example.demo.service.SubscriptionService")

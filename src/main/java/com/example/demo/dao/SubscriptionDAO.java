@@ -16,7 +16,6 @@ public interface SubscriptionDAO{
 
 	public Vector<String> InsuranceTypeVector(int customerID);
 
-
 	public List<Subscription> showSubscriptionCustomer();
 
 	public List<Subscription> showAcceptanceAprove()throws Exception;

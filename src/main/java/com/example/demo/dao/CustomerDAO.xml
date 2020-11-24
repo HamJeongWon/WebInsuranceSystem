@@ -11,8 +11,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select Max(CustomerID) as CustomerID from Customer
     </select>
 
-
-    
     <select id="CheckInsuranceName" parameterType="string" resultType = "int">
 		SELECT EXISTS (select InsuranceName from Insurance where InsuranceName = #{record}) as isChk
     </select>
@@ -80,6 +78,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{residentRegistrationNumber}, #{gender}, #{job}, #{property})
 	</insert>
 	
-	
-
 </mapper>

@@ -206,8 +206,13 @@ public class InsertCustomer {
 	
 	@RequestMapping("/InsertNewCus")
 	private String InsertNewCus(HttpServletRequest request, Model model) throws Exception {
-		int newCustomerID = customerService.SelectMaxID() + 1;
-
+		int newCustomerID;
+		try {
+			newCustomerID = customerService.SelectMaxID();
+		} catch (Exception e) {
+			newCustomerID = 2000;
+		}
+		newCustomerID = newCustomerID + 1;
 		Vector<Job> VecJob = new Vector<Job>();
 		
 		for(Job job : PersonalInformation.Job.values()) {

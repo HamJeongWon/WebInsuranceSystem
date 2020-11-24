@@ -52,8 +52,10 @@ public class InsuranceTreatmentService {
 		
 		Accident accident = new Accident();
 		
-		int accidentID = accidentDAO.SelectMaxID();
-		if(accidentID == 0) {
+		int accidentID;
+		try {
+			accidentID = accidentDAO.SelectMaxID();
+		} catch (Exception e) {
 			accidentID = 6000;
 		}
 		accidentID = accidentID+1;
