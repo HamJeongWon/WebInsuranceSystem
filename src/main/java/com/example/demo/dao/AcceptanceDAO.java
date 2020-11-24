@@ -17,4 +17,6 @@ public interface AcceptanceDAO {
 
 	public List<AcceptanceGuide> searchAcceptanceForInsurance(String string);
 
+	public AcceptanceGuide getAcceptanceGuide(int acceptanceID);
+
 }

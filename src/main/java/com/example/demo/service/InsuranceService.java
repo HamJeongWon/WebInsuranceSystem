@@ -72,9 +72,12 @@ public class InsuranceService {
 				 insurance = new ActualCostInsurance();
 				 break;
 			}
-
-			int insuranceID = insuranceDAO.SelectMaxID();
-			if (insuranceID == 0) { insuranceID = 1000; }
+			int insuranceID;
+			try {
+				insuranceID = insuranceDAO.SelectMaxID();
+			} catch (Exception e) {
+				insuranceID = 1000;
+			}
 			insuranceID = insuranceID + 1;
 			insurance.setInsuranceID(insuranceID);
 	        

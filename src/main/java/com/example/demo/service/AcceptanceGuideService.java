@@ -23,8 +23,12 @@ public class AcceptanceGuideService {
 
 	public void InsertAcceptanceGuide(HttpServletRequest request) {
         AcceptanceGuide acceptanceGuide = new AcceptanceGuide();
-        int acceptanceID = SelectMaxID("acceptanceID", "Acceptance");
-		if (acceptanceID == 0) { acceptanceID = 5000; }
+        int acceptanceID;
+        try {
+        	acceptanceID = SelectMaxID("acceptanceID", "Acceptance");
+        } catch (Exception e) {
+        	acceptanceID = 5000;
+        }
 		acceptanceID = acceptanceID + 1;
 		acceptanceGuide.setAcceptanceID(acceptanceID);	
 		acceptanceGuide.setScamCase(request.getParameter("ScamCase"));	
@@ -39,5 +43,9 @@ public class AcceptanceGuideService {
 
 	public Vector<Insurance> SearchNullAcceptanceInsuranceID() {
 		return new Vector<Insurance>(acceptanceDAO.SearchNullAcceptanceInsuranceID());
+	}
+
+	public AcceptanceGuide getAcceptanceGuide(int acceptanceID) {
+		return acceptanceDAO.getAcceptanceGuide(acceptanceID);
 	}
 }

@@ -1,4 +1,4 @@
-package com.example.demo.controller.aceptanceGuide;
+package com.example.demo.controller.acceptanceGuide;
 
 import java.util.Vector;
 
@@ -51,6 +51,12 @@ public class AcceptanceManage {
 	private String SearchNullAcceptanceGuide(Model model) throws Exception{
 		model.addAttribute("nullAcceptanceInsuranceID", acceptanceGuideService.SearchNullAcceptanceInsuranceID());
 		return "NullAcceptanceGuideList";
+	}
+	
+	@RequestMapping("/ResultAcceptanceGuide")
+	private String ResultAcceptanceGuide(HttpServletRequest request, Model model) throws Exception{
+		model.addAttribute("acceptanceGuide", acceptanceGuideService.getAcceptanceGuide(Integer.parseInt(request.getParameter("action"))));
+		return "ResultAcceptanceGuide";
 	}
 
 }

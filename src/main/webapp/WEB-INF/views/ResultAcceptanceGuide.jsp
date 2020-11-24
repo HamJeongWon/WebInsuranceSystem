@@ -9,7 +9,7 @@
 <body> 
 <jsp:include page="/incl/staticHeader.jsp" />
 <jsp:include page="/incl/Header.jsp" />
-<%AcceptanceGuide Acceptance = (AcceptanceGuide)request.getAttribute("AcceptanceGuide"); %>
+<%AcceptanceGuide Acceptance = (AcceptanceGuide)request.getAttribute("acceptanceGuide"); %>
 
 <section class="site-section bg-light" id="contact-section">
 
@@ -32,7 +32,7 @@
 	             <label class="text-black" for="insuranceID">보험 ID</label>
 	             <p class="text-primary"><%= Acceptance.getInsuranceID() %><p>
 	           </div>
-	 			      	<div class="col-md-4">
+	 			 <div class="col-md-4">
 	             <label class="text-black" for="riskEvaluation">위험 평가</label>
 	             <p class="text-primary"><%= Acceptance.getRiskEvaluation() %><p>
 	           </div>
