@@ -18,11 +18,11 @@ public class CustomerService {
     @Resource(name="com.example.demo.dao.CustomerDAO")
     CustomerDAO customerDAO;
     
-    public int SelectMaxID() {
+    public int SelectMaxID()throws Exception  {
     	return customerDAO.SelectMaxID();
     }
     
-    public int CheckInsuranceName(String record) {  	
+    public int CheckInsuranceName(String record)throws Exception  {  	
     	return customerDAO.CheckInsuranceName(record);
     }
     
@@ -35,7 +35,7 @@ public class CustomerService {
 		customerDAO.insertBuilding(hash);
 	}
 
-	public void insertCar(Car car, int customerID) {
+	public void insertCar(Car car, int customerID) throws Exception {
 		HashMap<String, Object> hash = new HashMap<String, Object>();
 		hash.put("customerID", customerID);
 		hash.put("carNumber", car.getCarNumber());
@@ -45,7 +45,7 @@ public class CustomerService {
 		customerDAO.insertCar(hash);
 	}
 
-	public void insertActualCost(ActualCost actualCost, String stringFamilyHistory, int customerID) {
+	public void insertActualCost(ActualCost actualCost, String stringFamilyHistory, int customerID) throws Exception {
 		HashMap<String, Object> hash = new HashMap<String, Object>();
 		hash.put("customerID", customerID);
 		hash.put("bloodType", actualCost.getBloodType());
@@ -54,11 +54,11 @@ public class CustomerService {
 		customerDAO.insertActualCost(hash);
 	}
 
-	public void insertCustomer(Customer customer) {
+	public void insertCustomer(Customer customer)throws Exception  {
 		customerDAO.insertCustomer(customer);
 	}
 
-	public void insertPersonalInformation(PersonalInformation personalInformation, String job, int customerID) {
+	public void insertPersonalInformation(PersonalInformation personalInformation, String job, int customerID)throws Exception  {
 		HashMap<String, Object> hash = new HashMap<String, Object>();
 		hash.put("customerID", customerID);
 		hash.put("accidentHistory", personalInformation.getAccidentHistory());

@@ -10,10 +10,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="SelectMaxID" resultType = "int">
 		select Max(CustomerID) as CustomerID from Customer
     </select>
+
+
     
     <select id="CheckInsuranceName" parameterType="string" resultType = "int">
 		SELECT EXISTS (select InsuranceName from Insurance where InsuranceName = #{record}) as isChk
     </select>
+
+    <select id="getInsuranceType" resultType = "com.example.demo.model.Insurance.Insurance">
+		select insuranceType from insurance where insuranceID = #{insuranceID}
+    </select>
+
+    <select id="findPersonalInformation" parameterType="int" resultMap="PersonalInformation">
+		select * from personalInformation where PcustomerID = #{customerID}
+    </select>
+    <resultMap type = "com.example.demo.model.Customer.PersonalInformation" id="PersonalInformation">
+   	 	<id column="pcustomerID" property="customerID"/>
+   	 	<result column="accidentHistory" property="accidentHistory"/>
+   	 	<result column="accountNumber" property="accountNumber"/>
+   	 	<result column="gender" property="gender"/>
+   	 	<result column="job" property="job"/>
+   	 	<result column="residentRegistrationNumber" property="residentRegistrationNumber"/>
+    </resultMap>  
+ 
+
+    <select id="findBuildingCustomer" parameterType="int" resultMap="Building">
+		select * from Building where BcustomerID = #{customerID}
+    </select>
+  <resultMap type = "com.example.demo.model.Customer.Building" id="Building">
+   	 	<id column="bcustomerID" property="customerID"/>
+    </resultMap>  
+
+    <select id="findCarCustomer" parameterType="int" resultMap="Car">
+		select * from Car where CcustomerID = #{customerID}
+    </select>
+  <resultMap type = "com.example.demo.model.Customer.Car" id="Car">
+   	 	<id column="CcustomerID" property="customerID"/>
+    </resultMap> 
+
+    <select id="findActualCostCustomer" parameterType="int" resultMap="ActualCost">
+		select * from ActualCost where AcustomerID = #{customerID}
+    </select>
+    <resultMap type = "com.example.demo.model.Customer.ActualCost" id="ActualCost">
+   	 	<id column="AcustomerID" property="customerID"/>
+
+    </resultMap> 
        
     <!--  insert -->
     <insert id="insertBuilding" parameterType="HashMap">
@@ -38,4 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into PersonalInformation values(#{customerID}, #{accidentHistory}, #{accountNumber}, 
 		#{residentRegistrationNumber}, #{gender}, #{job}, #{property})
 	</insert>
+	
+	
+
 </mapper>

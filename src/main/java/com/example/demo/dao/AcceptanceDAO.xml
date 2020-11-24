@@ -25,8 +25,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <select id="getAcceptanceGuide" parameterType = "int" resultType="com.example.demo.model.Acceptance.AcceptanceGuide">
 		select acceptanceID, riskEvaluation, scamCase, insuranceID from acceptance where acceptanceID = #{ID}
-    </select>
-    
-    
-    
+    </select>	
+
+	<select id="findAcceptance"
+		resultType="com.example.demo.model.Acceptance.AcceptanceGuide">
+		select * from Acceptance where insuranceID = #{insuranceID}
+	</select>
+
 </mapper>

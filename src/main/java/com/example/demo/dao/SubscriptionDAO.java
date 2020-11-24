@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
@@ -15,8 +16,15 @@ public interface SubscriptionDAO{
 
 	public Vector<String> InsuranceTypeVector(int customerID);
 
-	public void insertSubscription(int insuranceID, int customerID);
 
 	public List<Subscription> showSubscriptionCustomer();
+
+	public List<Subscription> showAcceptanceAprove()throws Exception;
+
+	public void insertSubscription(HashMap<String, Object> hash);
+
+	public void updateSubscriptionStatus(HashMap<String, Object> hash) throws Exception;
+
+	public void deleteSubscription(HashMap<String, Object> hash) throws Exception;
 
 }

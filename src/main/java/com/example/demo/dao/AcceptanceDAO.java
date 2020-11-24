@@ -18,5 +18,7 @@ public interface AcceptanceDAO {
 	public List<AcceptanceGuide> searchAcceptanceForInsurance(String string);
 
 	public AcceptanceGuide getAcceptanceGuide(int acceptanceID);
+	
+	public AcceptanceGuide findAcceptance(int insuranceID) throws Exception;
 
 }
