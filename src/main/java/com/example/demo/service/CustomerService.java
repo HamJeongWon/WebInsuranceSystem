@@ -1,10 +1,16 @@
 package com.example.demo.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.controller.contract.Contract;
 import com.example.demo.dao.CustomerDAO;
+import com.example.demo.model.Contract.Contract.PaymentType;
 import com.example.demo.model.Customer.ActualCost;
 import com.example.demo.model.Customer.Building;
 import com.example.demo.model.Customer.Car;
@@ -69,6 +75,49 @@ public class CustomerService {
 		hash.put("property", personalInformation.getProperty());
 		customerDAO.insertPersonalInformation(hash);
 	}
+
+	public String getInsuranceType(int insuranceID) {
+		return customerDAO.getInsuranceType(insuranceID);
+	}
+
+	public PersonalInformation findPersonalInformationByCutomerID(int customerID) {
+		return customerDAO.findPersonalInformationByCutomerID(customerID);
+	}
 	
-   
+	public Car getCar(int customerID, PersonalInformation personalInformation) {
+		Car car = customerDAO.getCar(customerID);
+		car.setJob(personalInformation.getJob());
+		car.setAccidentHistory(personalInformation.getAccidentHistory());
+		car.setAccountNumber(personalInformation.getAccountNumber());
+		car.setGender(personalInformation.getGender());
+		car.setProperty(personalInformation.getProperty());
+		car.setResidentRegistrationNumber(personalInformation.getResidentRegistrationNumber());
+		return car;
+	}
+	
+	public float getBuildingPrice(int customerID) {
+		float buildingPrice = customerDAO.getBuildingPrice(customerID);
+		return buildingPrice;
+	}
+
+	public ActualCost getActualCost(int customerID, PersonalInformation personalInformation) {
+		ActualCost actualCost = customerDAO.getActualCost(customerID);
+		System.out.println("customerService" + actualCost.getFamilyHistory());
+		
+		actualCost.setJob(personalInformation.getJob());
+		actualCost.setAccidentHistory(personalInformation.getAccidentHistory());
+		actualCost.setAccountNumber(personalInformation.getAccountNumber());
+		actualCost.setGender(personalInformation.getGender());
+		actualCost.setProperty(personalInformation.getProperty());
+		actualCost.setResidentRegistrationNumber(personalInformation.getResidentRegistrationNumber());
+		return actualCost;
+	}
+	
+	public void updatePersonalInformation(int customerID, int accountNumber) {
+		HashMap<String, Object> hash = new HashMap<String, Object>();
+		hash.put("customerID", customerID);
+		hash.put("accountNumber", accountNumber);
+		customerDAO.updatePersonalInformation(hash);		
+	}
+
 }

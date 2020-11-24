@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
@@ -27,7 +28,30 @@ public class SubscriptionService {
 	}
 
 	public void insertSubscription(int insuranceID, int customerID) {
-		subscriptionDAO.insertSubscription(insuranceID, customerID);	
+		HashMap<String, Object> hash = new HashMap<String, Object>();
+		hash.put("insuranceID", insuranceID);
+		hash.put("customerID", customerID);
+		subscriptionDAO.insertSubscription(hash);	
+	}
+
+	public Vector<Integer> showSubscriptionNoContractID() throws Exception {
+		Vector<Subscription> VecSubscription = subscriptionDAO.showSubscriptionNoContractID();
+		Vector<Integer> IDVector = new Vector<Integer>();
+		
+		for(Subscription subscription: VecSubscription) {
+			IDVector.add(subscription.getInsuranceID());
+			IDVector.add(subscription.getCustomerID());		
+		}
+		return IDVector;
+	}
+
+	public void insertContratIDtoSubscription(int contractID, int customerID, int insuranceID) throws Exception{
+		Subscription subscription = new Subscription();
+		subscription.setContractID(contractID);
+		subscription.setCustomerID(customerID);
+		subscription.setInsuranceID(insuranceID);
+
+		subscriptionDAO.insertContratIDtoSubscription(subscription);
 	}
 	
    

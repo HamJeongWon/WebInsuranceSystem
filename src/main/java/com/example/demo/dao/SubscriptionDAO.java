@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
@@ -19,4 +20,9 @@ public interface SubscriptionDAO{
 
 	public List<Subscription> showSubscriptionCustomer();
 
+	public void insertSubscription(HashMap<String, Object> hash);
+
+	public Vector<Subscription> showSubscriptionNoContractID() throws Exception;
+
+	public void insertContratIDtoSubscription(Subscription subscription);
 }
