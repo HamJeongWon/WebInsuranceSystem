@@ -26,4 +26,7 @@ public interface SubscriptionDAO{
 
 	public void deleteSubscription(HashMap<String, Object> hash) throws Exception;
 
+	public Vector<Subscription> showSubscriptionNoContractID() throws Exception;
+
+	public void insertContratIDtoSubscription(Subscription subscription);
 }

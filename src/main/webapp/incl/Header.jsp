@@ -49,13 +49,15 @@
 							<li><a href="ProductSubscription">상품 가입 신청하기</a></li>
 						</ul>
 					</li>
-					<li><a href="InsuranceSubscription" class="nav-link">인수심사하기</a></li>					
-					<li class="has-children"><a href="ContractContrallDesign.jsp" class="nav-link">계약관리하기</a>
+					
+					<li><a href="InsuranceSubscription" class="nav-link">인수심사하기</a></li>													
+					<li class="has-children"><a href="ContractContrallDesign" class="nav-link">계약관리하기</a>
 							<ul class="dropdown">
 								<li><a href="PaymentControll">납부관리하기</a></li>
 								<li><a href="FullContractControll">만기계약관리하기</a></li>
 								<li><a href="MakeContract?action=List">계약서작성하기</a></li>
-							</ul></li>				
+							</ul></li>		
+									
 					<li class="has-children">
 						<a href="InsuranceTreatment" class="nav-link">보험처리하기</a>
 						<ul class="dropdown">

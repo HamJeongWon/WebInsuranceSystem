@@ -18,6 +18,10 @@ public interface CustomerDAO{
 	public int SelectMaxID();
 	
 	public int CheckInsuranceName(String record)throws Exception;
+	
+	public String getInsuranceType(int insuranceID);
+
+	public PersonalInformation findPersonalInformationByCutomerID(int customerID);
 
 	public void insertBuilding(HashMap<String, Object> hash)throws Exception;
 
@@ -29,15 +33,22 @@ public interface CustomerDAO{
 
 	public void insertPersonalInformation(HashMap<String, Object> hash)throws Exception;
 	
-	
-
 	public PersonalInformation findPersonalInformation(int customerID) throws Exception;
 
-	public Insurance getInsuranceType(int insuranceID) throws Exception;
+	public Insurance getInsuranceType2(int insuranceID) throws Exception;
 
 	public Building findBuildingCustomer(int customerID)throws Exception;
 
 	public Car findCarCustomer(int customerID)throws Exception;
 
 	public ActualCost findActualCostCustomer(int customerID)throws Exception;
+
+
+	public Car getCar(int customerID);
+
+	public float getBuildingPrice(int customerID);
+
+	public ActualCost getActualCost(int customerID);
+
+	public void updatePersonalInformation(HashMap<String, Object> hash);
 }

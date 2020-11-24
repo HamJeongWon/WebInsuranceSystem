@@ -2,11 +2,47 @@
 <!DOCTYPE mapper 
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
+ 
 <mapper namespace="com.example.demo.dao.ContractDAO">
 
-	<select id="findCustomer" resultType="com.example.demo.model.Customer.Customer">
+ 	<!-- Select문 --> 
+    
+    <select id="SelectMaxID" resultType = "int">
+		select Max(ContractID) as ContractID from Contract
+    </select>
+    
+    <select id="searchUnpaidCustomer" resultType="com.example.demo.model.Contract.Contract">
+		select * from Contract where paymentStatus = false
+    </select>
+    
+    <select id="findCustomer" resultType="com.example.demo.model.Customer.Customer" parameterType="Integer">
 		select * from Customer where customerID = #{customerID}
-	</select>
+    </select>
 
+   <select id="searchFullContractCustomers" resultMap="selectMap" parameterType="String">
+		<![CDATA[select contractID, contract.customerID, customerName, contarctExplrationDate, personalInformationRetentionPeriod 
+from customer right join contract on contract.customerID = customer.customerID where contarctExplrationDate< #{now}]]>
+    </select>
+ 
+    <resultMap type="HashMap" id="selectMap"></resultMap>
+ 
+    <select id="searchContract" resultType="com.example.demo.model.Contract.Contract" parameterType="Integer">
+		select * from Contract where contractID = #{contractID}
+    </select>
+    
+ 	<!--  insert -->
+    <select id="insertSubscription" parameterType="HashMap">
+		insert into Subscription values(#{insuranceID}, #{customerID}, null, false)
+    </select>
+  
+    <select id="createContract" parameterType="com.example.demo.model.Contract.Contract">
+		insert into Contract values(#{ContractID}, #{ContractExpirationDate}, #{PaymentDate}, #{PaymentPeriod}, #{PersonalInformationRetentionPeriod}, 
+		#{paymentType}, #{PaymentStatus}, #{PaymentAmount}, #{customerID})
+    </select>  
+    
+   	<update id="updateContract" parameterType="com.example.demo.model.Contract.Contract">
+		update Contract set contarctExplrationDate = #{ContractExpirationDate}, personalInformationRetentionPeriod = #{PersonalInformationRetentionPeriod}, 
+		paymentDate = #{PaymentDate}, paymentType = #{paymentType} where contractID = #{ContractID}
+    </update>
+    
 </mapper>

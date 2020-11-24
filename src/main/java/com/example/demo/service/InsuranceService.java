@@ -220,4 +220,8 @@ public class InsuranceService {
 	public Vector<Insurance> InsuranceNameVector(String InsuranceType) {
 		return insuranceDAO.InsuranceNameVector(InsuranceType);
 	}
+
+	public float getInsuranceFee(int insuranceID) throws Exception {
+		return insuranceDAO.getInsuranceFee(insuranceID);
+	}
 }

@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT EXISTS (select InsuranceName from Insurance where InsuranceName = #{record}) as isChk
     </select>
 
-    <select id="getInsuranceType" resultType = "com.example.demo.model.Insurance.Insurance">
+    <select id="getInsuranceType2" resultType = "com.example.demo.model.Insurance.Insurance">
 		select insuranceType from insurance where insuranceID = #{insuranceID}
     </select>
 
@@ -54,6 +54,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     </resultMap> 
        
+	<select id="CheckInsuranceName" parameterType="string" resultType="int">
+		SELECT EXISTS (select InsuranceName from Insurance where
+		InsuranceName = #{record}) as isChk
+	</select>
+
+	<select id="getInsuranceType" parameterType="int" resultType="String">
+		select insuranceType from insurance where insuranceID = #{insuranceID}
+	</select>	
+	
+	<select id="findPersonalInformationByCutomerID" parameterType="int" resultType="com.example.demo.model.Customer.PersonalInformation">
+		select * from PersonalInformation where PcustomerID = #{customerID}
+	</select>
+
+	<select id="getCar" parameterType="int" resultType="com.example.demo.model.Customer.Car">
+		select * from Car where CcustomerID = #{customerID}
+	</select>
+	
+	<select id="getBuildingPrice" parameterType="int" resultType="float">
+		select buildingPrice from Building where BcustomerID = #{customerID}
+	</select>
+	
+	<select id="getActualCost" parameterType="int" resultType="com.example.demo.model.Customer.ActualCost">
+		select * from ActualCost where AcustomerID = #{customerID}
+	</select>	
+	
     <!--  insert -->
     <insert id="insertBuilding" parameterType="HashMap">
 		insert into Building values(#{customerID}, #{buildingPrice}, #{buildingAddress}, #{buildingScale})
@@ -64,9 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
 	<insert id="insertActualCost" parameterType="HashMap">
-		insert into
-		ActualCost values(#{customerID}, #{bloodType}, #{FamilyHistory},
-		#{diseaseHistory})
+		insert into ActualCost values(#{customerID}, #{bloodType}, #{FamilyHistory}, #{diseaseHistory})
 	</insert>
 
 	<insert id="insertCustomer" parameterType="com.example.demo.model.Customer.Customer">
@@ -78,4 +101,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{residentRegistrationNumber}, #{gender}, #{job}, #{property})
 	</insert>
 	
+	<update id="updatePersonalInformation" parameterType="HashMap">
+		update PersonalInformation set accountNumber = #{accountNumber} where PcustomerID = #{customerID}
+    </update>
 </mapper>

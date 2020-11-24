@@ -18,16 +18,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="SubscriptionVector" resultType="com.example.demo.model.Subscription.Subscription">
 		select * from Subscription where subscriptionStatus = true
     </select>
-    
+  
     <!-- where에서 status = true 조건 삭제 -->
     <select id="InsuranceTypeVector" parameterType="int" resultType="String">
 		select insuranceType from insurance where insuranceID in (select insuranceID from subscription where customerID = #{customerID})
     </select>
  	
- 	<!--  insert -->
-    <select id="insertSubscription" parameterType="Integer">
-		insert into Subscription values(#{insuranceID}, #{customerID}, null, false)
+ 	<select id="showSubscriptionNoContractID" resultType="com.example.demo.model.Subscription.Subscription">
+		select insuranceID, customerID from subscription where subscriptionStatus = 1 and contractID is null
     </select>
+
+ 	<!--  insert -->
 
     <!-- update -->
     <update id="updateSubscriptionStatus" parameterType="Integer">
@@ -39,4 +40,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	delete from subscription where customerID= #{customerID} and insuranceID = #{insuranceID}
     </delete>
      
+    <select id="insertSubscription" parameterType="HashMap">
+		insert into Subscription values(#{insuranceID}, #{customerID}, null, false)
+    </select>
+    
+    <!-- update -->
+     <update id="insertContratIDtoSubscription" parameterType="com.example.demo.model.Subscription.Subscription">
+		update subscription set contractID = #{ContractID} where customerID = #{CustomerID} and insuranceID = #{insuranceID}
+    </update>
 </mapper>

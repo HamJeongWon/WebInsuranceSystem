@@ -77,11 +77,11 @@ public class SubscriptionService {
 		request.setAttribute("acceptanceGuide", acceptanceGuide);
 		request.setAttribute("customer", customer);
 		request.setAttribute("personalInformation", customerDAO.findPersonalInformation(customerID));
-		request.setAttribute("insuranceType", customerDAO.getInsuranceType(insuranceID).getInsuranceType());
+		request.setAttribute("insuranceType", customerDAO.getInsuranceType2(insuranceID).getInsuranceType());
 		customer.setPersonalInformation(customerDAO.findPersonalInformation(customerID));
 	
 		// ���� ������ ���� �� ���� �Ʒ� ������ ��������
-		switch (this.customerDAO.getInsuranceType(insuranceID).getInsuranceType()) {
+		switch (this.customerDAO.getInsuranceType2(insuranceID).getInsuranceType()) {
 		case Fire: // ȭ�纸��
 			request.setAttribute("insurance", this.customerDAO.findBuildingCustomer(customerID));
 			break;
@@ -111,7 +111,26 @@ public class SubscriptionService {
 	      hash.put("customerID", customerID);
 	      hash.put("insuranceID", insuranceID); 
 		this.subscriptionDAO.updateSubscriptionStatus(hash);
+	}
+
+	public Vector<Integer> showSubscriptionNoContractID() throws Exception {
+		Vector<Subscription> VecSubscription = subscriptionDAO.showSubscriptionNoContractID();
+		Vector<Integer> IDVector = new Vector<Integer>();
 		
+		for(Subscription subscription: VecSubscription) {
+			IDVector.add(subscription.getInsuranceID());
+			IDVector.add(subscription.getCustomerID());		
+		}
+		return IDVector;
+	}
+
+	public void insertContratIDtoSubscription(int contractID, int customerID, int insuranceID) throws Exception{
+		Subscription subscription = new Subscription();
+		subscription.setContractID(contractID);
+		subscription.setCustomerID(customerID);
+		subscription.setInsuranceID(insuranceID);
+
+		subscriptionDAO.insertContratIDtoSubscription(subscription);
 	}
 
 	public void deleteSubscription(int customerID, int insuranceID)throws Exception  {
