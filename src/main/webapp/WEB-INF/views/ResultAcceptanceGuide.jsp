@@ -44,6 +44,16 @@
          </div>
     </section>
     
+        <a href="main" class="bg-primary py-5 d-block">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md10">
+          <h2 class="text-white">메인으로 돌아가기</h2>
+          </div>
+        </div>
+      </div>  
+    </a>
+    
 		<jsp:include page="/incl/Footer.jsp" />
 	</body>
 </html>

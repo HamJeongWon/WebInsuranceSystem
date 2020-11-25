@@ -1,16 +1,11 @@
 package com.example.demo.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.controller.contract.Contract;
 import com.example.demo.dao.CustomerDAO;
-import com.example.demo.model.Contract.Contract.PaymentType;
 import com.example.demo.model.Customer.ActualCost;
 import com.example.demo.model.Customer.Building;
 import com.example.demo.model.Customer.Car;

@@ -2,20 +2,11 @@ package com.example.demo.controller.contract;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.Vector;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,7 +14,6 @@ import com.example.demo.model.Contract.Contract.PaymentType;
 import com.example.demo.model.Customer.ActualCost;
 import com.example.demo.model.Customer.Car;
 import com.example.demo.model.Customer.PersonalInformation;
-import com.example.demo.model.Subscription.Subscription;
 import com.example.demo.service.ContractService;
 import com.example.demo.service.CustomerService;
 import com.example.demo.service.InsuranceService;
