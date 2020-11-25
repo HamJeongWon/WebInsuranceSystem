@@ -22,8 +22,6 @@ public class CalculateAccidentFund {
 		return "CalculateAccidentFund";
 	}
 	
-
-	
 	@RequestMapping("/InsertCalculateAccidentFund")
 	private String InsertCalculateAccidentFund(HttpServletRequest request,Model model) throws Exception{
 		int accidentID = Integer.parseInt(request.getParameter("accidentID"));
@@ -39,6 +37,4 @@ public class CalculateAccidentFund {
 		return insuranceTreatmentService.ResultCalculateAccidentFund(accidentID,insurancePremium,insurancePremiumCause, response,model);
 		
 	}
-
-
 }

@@ -18,8 +18,7 @@ public class PaymentAccidentFund {
 	@RequestMapping("/ResultMentPaymentAccidentFund")
 	private String CalculateAccidentFund(HttpServletRequest request,Model model) throws Exception{
 		int accidentID = Integer.parseInt(request.getParameter("accidentID"));
-		insuranceTreatmentService.CalculateAccidentFund(accidentID);
-		
+		insuranceTreatmentService.CalculateAccidentFund(accidentID);	
 		return "ResultMentPaymentAccidentFund";
 	}
 	

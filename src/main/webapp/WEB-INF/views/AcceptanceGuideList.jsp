@@ -85,7 +85,8 @@
 									</div>
 									<div class="col col-3">
 										<form action=./ResultAcceptanceGuide?action=<%=fireGuide.getAcceptanceID()%> method="post">
-											<input type="submit" value="정보보기" class="btn btn-primary btn-md text-white">
+											<input type="submit" value="정보보기"
+												class="btn btn-primary btn-md text-white">
 										</form>
 									</div>
 								</li>
@@ -162,7 +163,8 @@
 									</div>
 									<div class="col col-3">
 										<form action=./ResultAcceptanceGuide?action=<%=actualCostGuide.getAcceptanceID()%> method="post">
-											<input type="submit" value="정보보기" class="btn btn-primary btn-md text-white">
+											<input type="submit" value="정보보기"
+												class="btn btn-primary btn-md text-white">
 										</form>
 									</div>
 								</li>
@@ -182,6 +184,17 @@
 				</div>
 			</div>
 		</section>
+
+		<a href="main" class="bg-primary py-5 d-block">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md10">
+						<h2 class="text-white">메인으로 돌아가기</h2>
+					</div>
+				</div>
+			</div>
+		</a>
+
 		<script src="js/cbpFWTabs.js"></script>
 		<script>
 				(function() {
