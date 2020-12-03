@@ -48,4 +48,13 @@ public class AcceptanceGuideService {
 	public AcceptanceGuide getAcceptanceGuide(int acceptanceID) {
 		return acceptanceDAO.getAcceptanceGuide(acceptanceID);
 	}
+	
+	public AcceptanceGuide findAcceptance(int insuranceID) throws Exception {
+		AcceptanceGuide acceptanceGuide = acceptanceDAO.findAcceptance(insuranceID);
+		if (acceptanceGuide.getAcceptanceID() == 0) {
+			acceptanceGuide.setAcceptanceID(5001);
+		}
+		
+		return acceptanceGuide;
+	}
 }

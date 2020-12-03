@@ -11,6 +11,7 @@ import com.example.demo.model.Customer.Building;
 import com.example.demo.model.Customer.Car;
 import com.example.demo.model.Customer.Customer;
 import com.example.demo.model.Customer.PersonalInformation;
+import com.example.demo.model.Insurance.Insurance.InsuranceType;
 
 
 @Service("com.example.demo.service.CustomerService")
@@ -113,6 +114,36 @@ public class CustomerService {
 		hash.put("customerID", customerID);
 		hash.put("accountNumber", accountNumber);
 		customerDAO.updatePersonalInformation(hash);		
+	}
+
+	public PersonalInformation findPersonalInformation(int customerID) throws Exception {
+		PersonalInformation personalInformation = customerDAO.findPersonalInformation(customerID);
+		return personalInformation;
+	}
+
+	public InsuranceType getInsuranceType2(int insuranceID) throws Exception {
+		InsuranceType insuranceType =customerDAO.getInsuranceType2(insuranceID).getInsuranceType();
+		return insuranceType;
+	}
+
+	public void setPersonalInformation(Customer customer) throws Exception {
+		customer.setPersonalInformation(customerDAO.findPersonalInformation(customer.getCustomerID()));
+		
+	}
+
+	public Building findBuildingCustomer(int customerID)throws Exception {
+		Building building = customerDAO.findBuildingCustomer(customerID);
+		return building;
+	}
+
+	public Car findCarCustomer(int customerID)throws Exception {
+		Car car = customerDAO.findCarCustomer(customerID);
+		return car;
+	}
+
+	public ActualCost findActualCostCustomer(int customerID)throws Exception  {
+		ActualCost actualCost = customerDAO.findActualCostCustomer(customerID);
+		return actualCost;
 	}
 
 }

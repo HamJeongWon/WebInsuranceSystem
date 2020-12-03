@@ -168,38 +168,38 @@ public class InsertCustomer {
 			url = "CarPersonalInformationResult";
 			
 		}else if(InsuranceType.equals("ActualCost")) {
-			ActualCost actualCost = new ActualCost();
-			actualCost.setBloodType(ActualCost.BloodType.valueOf(request.getParameter("bloodType")));
-			actualCost.setDiseaseHistory(ActualCost.DiseaseHistory.valueOf(request.getParameter("diseaseHistory")));			
-			String familyDisease = request.getParameter("familyDisease");
-			String familyrelation = request.getParameter("familyrelation");
-			
-			HashMap<String, String> FamilyHistory = new HashMap<String, String>();
-			FamilyHistory.put(familyrelation, familyDisease);
-			actualCost.setFamilyHistory(FamilyHistory);
-			
-			HashMap<String, String> hash = actualCost.getFamilyHistory();
-			String Key = null;
-			String value = null;
-
-			Set set = hash.entrySet();
-			Iterator iterator = set.iterator();
-
-			while (iterator.hasNext()) {
-				Map.Entry entry = (Map.Entry) iterator.next();
-				Key = (String) entry.getKey();
-				value = (String) entry.getValue();
-			}
-			String StringFamilyHistory = Key + ":" + value;
-			
-			customerService.insertActualCost(actualCost, StringFamilyHistory, CustomerID);
-			
-			model.addAttribute("CustomerID", CustomerID);
-			model.addAttribute("InsuranceID", InsuranceID);
-			model.addAttribute("familyrelation", familyrelation);   
-			model.addAttribute("familyDisease", familyDisease);    
-			model.addAttribute("actualCost", actualCost);           
-			url = "LifePersonalInformationResult";
+//			ActualCost actualCost = new ActualCost();
+//			actualCost.setBloodType(ActualCost.BloodType.valueOf(request.getParameter("bloodType")));
+//			actualCost.setDiseaseHistory(ActualCost.DiseaseHistory.valueOf(request.getParameter("diseaseHistory")));			
+//			String familyDisease = request.getParameter("familyDisease");
+//			String familyrelation = request.getParameter("familyrelation");
+//			
+//			HashMap<String, String> FamilyHistory = new HashMap<String, String>();
+//			FamilyHistory.put(familyrelation, familyDisease);
+//			actualCost.setFamilyHistory(FamilyHistory);
+//			
+//			HashMap<String, String> hash = actualCost.getFamilyHistory();
+//			String Key = null;
+//			String value = null;
+//
+//			Set set = hash.entrySet();
+//			Iterator iterator = set.iterator();
+//
+//			while (iterator.hasNext()) {
+//				Map.Entry entry = (Map.Entry) iterator.next();
+//				Key = (String) entry.getKey();
+//				value = (String) entry.getValue();
+//			}
+//			String StringFamilyHistory = Key + ":" + value;
+//			
+//			customerService.insertActualCost(actualCost, StringFamilyHistory, CustomerID);
+//			
+//			model.addAttribute("CustomerID", CustomerID);
+//			model.addAttribute("InsuranceID", InsuranceID);
+//			model.addAttribute("familyrelation", familyrelation);   
+//			model.addAttribute("familyDisease", familyDisease);    
+//			model.addAttribute("actualCost", actualCost);           
+//			url = "LifePersonalInformationResult";
 		}
 	  return url;
 	}

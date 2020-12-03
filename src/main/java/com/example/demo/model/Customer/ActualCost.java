@@ -13,8 +13,8 @@ public class ActualCost extends PersonalInformation {
 	};
 	
 	private BloodType bloodType;
-	private HashMap<String, String> FamilyHistory;
-	private String tempFamilyHistory;
+	private String FamilyHistory;
+	
 	private DiseaseHistory diseaseHistory;
 
 
@@ -22,22 +22,8 @@ public class ActualCost extends PersonalInformation {
 		this.bloodType = null;
 		this.FamilyHistory = null;
 		this.diseaseHistory = null;
-		this.tempFamilyHistory = null;
 	}
 	
-	
-
-	public String getTempFamilyHistory() {
-		return tempFamilyHistory;
-	}
-
-
-
-	public void setTempFamilyHistory(String tempFamilyHistory) {
-		this.tempFamilyHistory = tempFamilyHistory;
-	}
-
-
 
 	public BloodType getBloodType() {
 		return bloodType;
@@ -55,11 +41,11 @@ public class ActualCost extends PersonalInformation {
 		this.diseaseHistory = diseaseHistory;
 	}
 
-	public HashMap<String, String> getFamilyHistory() {
+	public String getFamilyHistory() {
 		return FamilyHistory;
 	}
 
-	public void setFamilyHistory(HashMap<String, String> familyHistory) {
+	public void setFamilyHistory(String familyHistory) {
 		FamilyHistory = familyHistory;
 	}
 

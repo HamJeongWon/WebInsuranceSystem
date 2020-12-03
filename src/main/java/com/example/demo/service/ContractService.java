@@ -242,9 +242,9 @@ public class ContractService {
 			break;
 		}
 
-		if (actualCost.getFamilyHistory().containsKey("부")) {
+		if (actualCost.getFamilyHistory().substring(0, 1).equals("부")) {
 			insurancePremiumRate = (float) (insurancePremiumRate * 1.5);
-		} else if (actualCost.getFamilyHistory().containsKey("모")) {
+		} else if (actualCost.getFamilyHistory().substring(0, 1).equals("모")) {
 			insurancePremiumRate = (float) (insurancePremiumRate * 1.5);
 		} else {
 			insurancePremiumRate = (float) (insurancePremiumRate * 0.8);
@@ -351,5 +351,10 @@ public class ContractService {
 	public Contract searchContract(int contractID) {
 		Contract contract = contractDAO.searchContract(contractID);
 		return contract;
+	}
+
+	public Customer findCustomer(int customerID) throws Exception {
+		Customer customer = contractDAO.findCustomer(customerID);
+		return customer;
 	}
 }
