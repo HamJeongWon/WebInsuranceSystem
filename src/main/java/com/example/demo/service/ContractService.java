@@ -245,9 +245,9 @@ public class ContractService {
 			break;
 		}
 
-		if (actualCost.getFamilyHistory().contains("부")) {
+		if (actualCost.getFamilyHistory().substring(0,1).equals("부")) {
 			insurancePremiumRate = (float) (insurancePremiumRate * 1.5);
-		} else if (actualCost.getFamilyHistory().contains("모")) {
+		} else if (actualCost.getFamilyHistory().substring(0,1).equals("모")) {
 			insurancePremiumRate = (float) (insurancePremiumRate * 1.5);
 		} else {
 			insurancePremiumRate = (float) (insurancePremiumRate * 0.8);
