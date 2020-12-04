@@ -1,18 +1,15 @@
 package com.example.demo.controller.InsuranceSubscription;
 
-import java.util.HashMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.Acceptance.AcceptanceGuide;
-import com.example.demo.model.Customer.ActualCost;
 import com.example.demo.model.Customer.Customer;
 import com.example.demo.service.AcceptanceGuideService;
 import com.example.demo.service.ContractService;

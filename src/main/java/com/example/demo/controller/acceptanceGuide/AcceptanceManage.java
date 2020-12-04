@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.Acceptance.AcceptanceGuide;
+import com.example.demo.model.Acceptance.AcceptanceGuide.RiskEvaluation;
 import com.example.demo.model.Insurance.Insurance;
 import com.example.demo.service.AcceptanceGuideService;
 
@@ -32,7 +33,10 @@ public class AcceptanceManage {
 	
 	@RequestMapping("/AcceptanceGuideDesign")
 	private String AcceptanceGuideDesign(HttpServletRequest request) throws Exception{	
-		acceptanceGuideService.InsertAcceptanceGuide(request);		
+		String ScameCase = request.getParameter("ScamCase");	
+		RiskEvaluation RiskEvaluation = AcceptanceGuide.RiskEvaluation.valueOf(request.getParameter("RiskEvaluation"));
+		int InsuranceID = Integer.parseInt(request.getParameter("InsuranceID"));
+		acceptanceGuideService.InsertAcceptanceGuide(ScameCase, RiskEvaluation, InsuranceID);		
 		return "redirect:/ShowAcceptanceGuide";
 	}
 	

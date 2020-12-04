@@ -3,12 +3,12 @@ package com.example.demo.service;
 import java.util.Vector;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.AcceptanceDAO;
 import com.example.demo.model.Acceptance.AcceptanceGuide;
+import com.example.demo.model.Acceptance.AcceptanceGuide.RiskEvaluation;
 import com.example.demo.model.Insurance.Insurance;
 
 @Service("com.example.demo.service.AcceptanceGuideService")
@@ -21,7 +21,7 @@ public class AcceptanceGuideService {
 		return acceptanceDAO.SelectMaxID();
 	}
 
-	public void InsertAcceptanceGuide(HttpServletRequest request) {
+	public void InsertAcceptanceGuide(String scameCase, RiskEvaluation riskEvaluation, int insuranceID) {
         AcceptanceGuide acceptanceGuide = new AcceptanceGuide();
         int acceptanceID;
         try {
@@ -31,9 +31,9 @@ public class AcceptanceGuideService {
         }
 		acceptanceID = acceptanceID + 1;
 		acceptanceGuide.setAcceptanceID(acceptanceID);	
-		acceptanceGuide.setScamCase(request.getParameter("ScamCase"));	
-		acceptanceGuide.setRiskEvaluation(AcceptanceGuide.RiskEvaluation.valueOf(request.getParameter("RiskEvaluation")));
-		acceptanceGuide.setInsuranceID(Integer.parseInt(request.getParameter("InsuranceID")));
+		acceptanceGuide.setScamCase(scameCase);	
+		acceptanceGuide.setRiskEvaluation(riskEvaluation);
+		acceptanceGuide.setInsuranceID(insuranceID);
 		acceptanceDAO.InsertAcceptanceGuide(acceptanceGuide);
 	}
 
