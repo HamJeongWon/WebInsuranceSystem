@@ -8,24 +8,30 @@ public class Contract {
 	};
 	private int customerID;
 	private Date ContractExpirationDate; 
+	private String tempContractExpirationDate; 
 	private int ContractID;
 	private int PaymentAmount;
 	private Date PaymentDate;
+	private String tempPaymentDate; 
 	private int PaymentPeriod;
 	private boolean PaymentStatus;
 	private PaymentType paymentType;
 	private Date PersonalInformationRetentionPeriod;
+	private String tempPersonalInformationRetentionPeriod; 
 
 	public Contract() {
 		this.customerID = 0;
 		this.ContractExpirationDate = null;
+		this.tempContractExpirationDate = null;
 		this.ContractID = 0;
 		this.PaymentAmount = 0;
 		this.PaymentDate = null;
+		this.tempPaymentDate = null;
 		this.PaymentPeriod = 0;
 		this.PaymentStatus = false;
 		this.paymentType = null;
 		this.PersonalInformationRetentionPeriod = null;
+		this.tempPersonalInformationRetentionPeriod = null;
 	}
 	
 	public int getCustomerID() {
@@ -98,5 +104,29 @@ public class Contract {
 
 	public void setPersonalInformationRetentionPeriod(Date personalInformationRetentionPeriod) {
 		PersonalInformationRetentionPeriod = personalInformationRetentionPeriod;
+	}
+
+	public String getTempContractExpirationDate() {
+		return tempContractExpirationDate;
+	}
+
+	public void setTempContractExpirationDate(String tempContractExpirationDate) {
+		this.tempContractExpirationDate = tempContractExpirationDate;
+	}
+
+	public String getTempPaymentDate() {
+		return tempPaymentDate;
+	}
+
+	public void setTempPaymentDate(String tempPaymentDate) {
+		this.tempPaymentDate = tempPaymentDate;
+	}
+
+	public String getTempPersonalInformationRetentionPeriod() {
+		return tempPersonalInformationRetentionPeriod;
+	}
+
+	public void setTempPersonalInformationRetentionPeriod(String tempPersonalInformationRetentionPeriod) {
+		this.tempPersonalInformationRetentionPeriod = tempPersonalInformationRetentionPeriod;
 	}
 }

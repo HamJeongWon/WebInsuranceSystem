@@ -1,16 +1,22 @@
 package com.example.demo.service;
 
 import java.util.HashMap;
+import java.util.Vector;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.CustomerDAO;
 import com.example.demo.model.Customer.ActualCost;
+import com.example.demo.model.Customer.ActualCost.BloodType;
+import com.example.demo.model.Customer.ActualCost.DiseaseHistory;
 import com.example.demo.model.Customer.Building;
 import com.example.demo.model.Customer.Car;
+import com.example.demo.model.Customer.Car.CarType;
+import com.example.demo.model.Customer.Car.LicenseType;
 import com.example.demo.model.Customer.Customer;
 import com.example.demo.model.Customer.PersonalInformation;
+import com.example.demo.model.Customer.PersonalInformation.Job;
 
 
 @Service("com.example.demo.service.CustomerService")
@@ -26,49 +32,66 @@ public class CustomerService {
     public int CheckInsuranceName(String record)throws Exception  {  	
     	return customerDAO.CheckInsuranceName(record);
     }
-    
-	public void insertBuilding(Building building, int customerID) throws Exception{
-		HashMap<String, Object> hash = new HashMap<String, Object>();
-		hash.put("customerID", customerID);
-		hash.put("buildingAddress", building.getBuildingAddress());
-		hash.put("buildingPrice", building.getBuildingPrice());
-		hash.put("buildingScale", building.getBuildingScale());
-		customerDAO.insertBuilding(hash);
+
+	public Building insertBuilding(int CustomerID, String buildingAddress, int buildingPrice, String buildingScale) throws Exception{
+		Building building = new Building();
+		building.setCustomerID(CustomerID);
+		building.setBuildingAddress(buildingAddress);
+		building.setBuildingPrice(buildingPrice);
+		building.setBuildingScale(buildingScale);
+		customerDAO.insertBuilding(building);
+		return building;
 	}
 
-	public void insertCar(Car car, int customerID) throws Exception {
-		HashMap<String, Object> hash = new HashMap<String, Object>();
-		hash.put("customerID", customerID);
-		hash.put("carNumber", car.getCarNumber());
-		hash.put("carType", car.getCarType());
-		hash.put("carCareer", car.getDrivingCareer());
-		hash.put("licenseType", car.getLicenseType());
-		customerDAO.insertCar(hash);
+	public Car insertCar(int customerID, String carNumber, CarType carType, int carCareer, LicenseType licenseType) throws Exception{		
+		Car car = new Car();
+		car.setCustomerID(customerID);
+		car.setCarNumber(carNumber);
+		car.setCarType(carType);
+		car.setDrivingCareer(carCareer);
+		car.setLicenseType(licenseType);
+		customerDAO.insertCar(car);
+		return car;
 	}
 
-	public void insertActualCost(ActualCost actualCost, String stringFamilyHistory, int customerID) throws Exception {
-		HashMap<String, Object> hash = new HashMap<String, Object>();
-		hash.put("customerID", customerID);
-		hash.put("bloodType", actualCost.getBloodType());
-		hash.put("diseaseHistory", actualCost.getDiseaseHistory());
-		hash.put("FamilyHistory", stringFamilyHistory);
-		customerDAO.insertActualCost(hash);
+	public ActualCost insertActualCost(int customerID, BloodType bloodType, DiseaseHistory diseaseHistory,
+			String familyDisease, String familyrelation) throws Exception{
+		ActualCost actualCost = new ActualCost();
+		actualCost.setCustomerID(customerID);
+		actualCost.setBloodType(bloodType);
+		actualCost.setDiseaseHistory(diseaseHistory);
+		String familyHistory = familyrelation+":"+familyDisease;
+		actualCost.setFamilyHistory(familyHistory);
+		customerDAO.insertActualCost(actualCost);
+		return actualCost;
 	}
 
-	public void insertCustomer(Customer customer)throws Exception  {
+	public void insertCustomer(int customerID, String customerName, String phoneNum)throws Exception  {
+		Customer customer = new Customer();
+		customer.setCustomerID(customerID);
+		customer.setCustomerName(customerName);
+		customer.setPhoneNum(phoneNum);
 		customerDAO.insertCustomer(customer);
 	}
 
-	public void insertPersonalInformation(PersonalInformation personalInformation, String job, int customerID)throws Exception  {
-		HashMap<String, Object> hash = new HashMap<String, Object>();
-		hash.put("customerID", customerID);
-		hash.put("accidentHistory", personalInformation.getAccidentHistory());
-		hash.put("accountNumber", personalInformation.getAccountNumber());
-		hash.put("residentRegistrationNumber", personalInformation.getResidentRegistrationNumber());
-		hash.put("gender", personalInformation.getGender());
-		hash.put("job", job);
-		hash.put("property", personalInformation.getProperty());
-		customerDAO.insertPersonalInformation(hash);
+	
+	public void insertPersonalInformation(int customerID, Job job, String accidentHistory, int accountNumber,
+			int property, String residentRegistrationNumber, String sex)throws Exception  {
+		PersonalInformation personalInformation = new PersonalInformation();	
+		personalInformation.setCustomerID(customerID);
+		personalInformation.setJob(job);
+		personalInformation.setAccidentHistory(accidentHistory);
+		personalInformation.setAccountNumber(accountNumber);
+		personalInformation.setProperty(property);
+		personalInformation.setResidentRegistrationNumber(residentRegistrationNumber);
+		
+		if (sex.equals("M")) {
+			personalInformation.setGender(true);
+		} else {
+			personalInformation.setGender(false);
+		}
+		
+		customerDAO.insertPersonalInformation(personalInformation);
 	}
 
 	public String getInsuranceType(int insuranceID) {
@@ -97,8 +120,7 @@ public class CustomerService {
 
 	public ActualCost getActualCost(int customerID, PersonalInformation personalInformation) {
 		ActualCost actualCost = customerDAO.getActualCost(customerID);
-		System.out.println("customerService" + actualCost.getFamilyHistory());
-		
+     
 		actualCost.setJob(personalInformation.getJob());
 		actualCost.setAccidentHistory(personalInformation.getAccidentHistory());
 		actualCost.setAccountNumber(personalInformation.getAccountNumber());
@@ -113,6 +135,14 @@ public class CustomerService {
 		hash.put("customerID", customerID);
 		hash.put("accountNumber", accountNumber);
 		customerDAO.updatePersonalInformation(hash);		
+	}
+
+	public Vector<Job> jobVector() {
+		Vector<Job> VecJob = new Vector<Job>();	
+		for(Job job : PersonalInformation.Job.values()) {
+			VecJob.add(job);
+		}
+		return VecJob;
 	}
 
 }

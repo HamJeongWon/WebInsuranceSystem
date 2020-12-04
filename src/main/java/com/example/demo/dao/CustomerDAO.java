@@ -23,15 +23,15 @@ public interface CustomerDAO{
 
 	public PersonalInformation findPersonalInformationByCutomerID(int customerID);
 
-	public void insertBuilding(HashMap<String, Object> hash)throws Exception;
+	public void insertBuilding(Building building)throws Exception;
 
-	public void insertCar(HashMap<String, Object> hash)throws Exception;
+	public void insertCar(Car car)throws Exception;
 
-	public void insertActualCost(HashMap<String, Object> hash)throws Exception;
+	public void insertActualCost(ActualCost actualCost)throws Exception;
 
 	public void insertCustomer(Customer customer)throws Exception;
 
-	public void insertPersonalInformation(HashMap<String, Object> hash)throws Exception;
+	public void insertPersonalInformation(PersonalInformation personalInformation)throws Exception;
 	
 	public PersonalInformation findPersonalInformation(int customerID) throws Exception;
 
@@ -42,7 +42,6 @@ public interface CustomerDAO{
 	public Car findCarCustomer(int customerID)throws Exception;
 
 	public ActualCost findActualCostCustomer(int customerID)throws Exception;
-
 
 	public Car getCar(int customerID);
 

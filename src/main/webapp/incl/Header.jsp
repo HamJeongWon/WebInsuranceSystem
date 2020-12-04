@@ -50,12 +50,14 @@
 						</ul>
 					</li>
 					
-					<li><a href="InsuranceSubscription" class="nav-link">인수심사하기</a></li>													
-					<li class="has-children"><a href="ContractContrallDesign" class="nav-link">계약관리하기</a>
+					<li><a href="InsuranceSubscription" class="nav-link">인수심사하기</a></li>	
+																	
+					<li class="has-children">
+						<a href="ContractControlDesign" class="nav-link">계약관리하기</a>
 							<ul class="dropdown">
 								<li><a href="PaymentControll">납부관리하기</a></li>
 								<li><a href="FullContractControll">만기계약관리하기</a></li>
-								<li><a href="MakeContract?action=List">계약서작성하기</a></li>
+								<li><a href="MakeContractList">계약서작성하기</a></li>
 							</ul></li>		
 									
 					<li class="has-children">

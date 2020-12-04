@@ -9,6 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.InsuranceDAO;
+import com.example.demo.model.Customer.ActualCost.BloodType;
+import com.example.demo.model.Customer.ActualCost.DiseaseHistory;
+import com.example.demo.model.Customer.ActualCost;
+import com.example.demo.model.Customer.Car;
+import com.example.demo.model.Customer.Car.CarType;
+import com.example.demo.model.Customer.Car.LicenseType;
 import com.example.demo.model.Insurance.ActualCostInsurance;
 import com.example.demo.model.Insurance.CarInsurance;
 import com.example.demo.model.Insurance.DamageInformation;
@@ -20,6 +26,7 @@ import com.example.demo.model.Insurance.SelfVehicleDamage;
 import com.example.demo.model.Insurance.Goods_Personal.GSeparation;
 import com.example.demo.model.Insurance.Insurance.InsuranceType;
 import com.example.demo.model.Insurance.SelfVehicleDamage.SSeparation;
+import com.example.demo.model.Subscription.Subscription;
 
 
 @Service("com.example.demo.service.InsuranceService")
@@ -223,5 +230,57 @@ public class InsuranceService {
 
 	public float getInsuranceFee(int insuranceID) throws Exception {
 		return insuranceDAO.getInsuranceFee(insuranceID);
+	}
+
+	public Vector<Insurance> setVecInsurance(Vector<Subscription> vecSubscription) throws Exception {
+		Vector<Insurance> VecInsurance = new Vector<Insurance>();	
+		
+		for(Subscription Sub : vecSubscription) {
+			Insurance insurance = this.FindInsurance(Sub.getInsuranceID());
+			VecInsurance.add(insurance);
+		}	
+		return VecInsurance;
+	}
+
+	public Vector<InsuranceType> changeInsuranceType(Vector<String> vecInsuranceTypeString) throws Exception {
+		Vector<InsuranceType> VecInsuranceType = new Vector<InsuranceType>();
+		
+		for(String type : vecInsuranceTypeString) {
+			InsuranceType InsuranceType = Insurance.InsuranceType.valueOf(type);
+			VecInsuranceType.add(InsuranceType);
+		}
+		return VecInsuranceType;
+	}
+
+	public Vector<CarType> carTypeVector() {	
+		Vector<CarType> VecCarType = new Vector<CarType>();
+		for (CarType carType : Car.CarType.values()) {
+			VecCarType.add(carType);
+		}
+		return VecCarType;
+	}
+
+	public Vector<LicenseType> licenseTypeVector() {
+		Vector<LicenseType> VecLicenseType = new Vector<LicenseType>();
+		for (LicenseType licenseType : Car.LicenseType.values()) {
+			VecLicenseType.add(licenseType);
+		}
+		return VecLicenseType;
+	}
+
+	public Vector<BloodType> bloodTypeVector() {
+		Vector<BloodType> VecBloodType = new Vector<BloodType>();
+		for (BloodType bloodType : ActualCost.BloodType.values()) {
+			VecBloodType.add(bloodType);
+		}
+		return VecBloodType;
+	}
+
+	public Vector<DiseaseHistory> diseaseHistoryVector() {
+		Vector<DiseaseHistory> VecDiseaseHistory = new Vector<DiseaseHistory>();
+		for (DiseaseHistory diseaseHistory : ActualCost.DiseaseHistory.values()) {
+			VecDiseaseHistory.add(diseaseHistory);
+		}
+		return VecDiseaseHistory;
 	}
 }

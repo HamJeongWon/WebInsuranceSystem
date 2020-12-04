@@ -39,13 +39,16 @@ public class ContractService {
 	public Vector<String> searchUnpaidCustomer() throws Exception {
 		Vector<Contract> VecContract = contractDAO.searchUnpaidCustomer();
 		Vector<String> unpaidVec = new Vector<String>();
-		
+
 		for(Contract contract : VecContract) {			
 			Customer customer = contractDAO.findCustomer(contract.getCustomerID());
 			unpaidVec.add(Integer.toString(contract.getContractID()));
 			unpaidVec.add(customer.getCustomerName());
 			unpaidVec.add(customer.getPhoneNum());
-			unpaidVec.add(String.valueOf(contract.getPaymentDate()));
+			java.util.Date date = contract.getPaymentDate();
+			String PaymentDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+			unpaidVec.add(String.valueOf(PaymentDate));
+			//unpaidVec.add(String.valueOf(contract.getPaymentDate()).toString());
 			unpaidVec.add(String.valueOf(contract.getPaymentStatus()));
 			unpaidVec.add(String.valueOf(contract.getPaymentType()));
 		}
@@ -242,9 +245,9 @@ public class ContractService {
 			break;
 		}
 
-		if (actualCost.getFamilyHistory().containsKey("부")) {
+		if (actualCost.getFamilyHistory().contains("부")) {
 			insurancePremiumRate = (float) (insurancePremiumRate * 1.5);
-		} else if (actualCost.getFamilyHistory().containsKey("모")) {
+		} else if (actualCost.getFamilyHistory().contains("모")) {
 			insurancePremiumRate = (float) (insurancePremiumRate * 1.5);
 		} else {
 			insurancePremiumRate = (float) (insurancePremiumRate * 0.8);
@@ -287,7 +290,7 @@ public class ContractService {
 		contract.setPaymentStatus(true);
 		contract.setPaymentType(paymentType);
 		contract.setPersonalInformationRetentionPeriod(JPersonalInformationRetentionPeriod);
-	
+
 		contractDAO.createContract(contract);
 		
 		return contract;
@@ -311,11 +314,11 @@ public class ContractService {
 	}
 
 	public void updateContract(int contractID, int customerID, String paymentDate, PaymentType paymentType,
-			String contractExpirationDate) {
+			String contractExpirationDate) throws Exception {
 		
 		SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
 		
-		java.util.Date JpaymenDate = null;	
+		java.util.Date JpaymenDate = null;		
 		try {
 			JpaymenDate = (java.util.Date) SDF.parse(paymentDate);
 		} catch (ParseException e) {
@@ -329,10 +332,10 @@ public class ContractService {
 			e.printStackTrace();
 		}
 		
-		SimpleDateFormat printFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(JContractExpirationDate);
 		cal.add(Calendar.YEAR, 3);
+		
 		java.util.Date JPersonalInformationRetentionPeriod = (java.util.Date) cal.getTime();
 		
 		Contract contract = new Contract();		
@@ -341,15 +344,27 @@ public class ContractService {
 		contract.setPaymentType(paymentType);
 		contract.setContractExpirationDate(JContractExpirationDate);
 		contract.setPersonalInformationRetentionPeriod(JPersonalInformationRetentionPeriod);
-		System.out.println(contract.getPaymentDate());
-		System.out.println(contract.getContractExpirationDate());
-		System.out.println(contract.getPersonalInformationRetentionPeriod());
 		
 		contractDAO.updateContract(contract);
 	}
 
-	public Contract searchContract(int contractID) {
+	public Contract searchContract(int contractID) throws Exception{
 		Contract contract = contractDAO.searchContract(contractID);
+		SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
+
+		java.util.Date JpaymenDate = null;		
+		JpaymenDate = (java.util.Date) SDF.parse(contract.getTempPaymentDate());
+		
+		java.util.Date JContractExpirationDate = null;
+		JContractExpirationDate = (java.util.Date) SDF.parse(contract.getTempContractExpirationDate());
+		
+		java.util.Date JPersonalInformationRetentionPeriod = null;
+		JPersonalInformationRetentionPeriod = (java.util.Date) SDF.parse(contract.getTempPersonalInformationRetentionPeriod());
+		
+		contract.setContractExpirationDate(JContractExpirationDate);
+		contract.setPaymentDate(JpaymenDate);
+		contract.setPersonalInformationRetentionPeriod(JPersonalInformationRetentionPeriod);
+
 		return contract;
 	}
 }

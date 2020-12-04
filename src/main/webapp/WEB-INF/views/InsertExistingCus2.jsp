@@ -24,6 +24,7 @@
 		String CarRadio = null;
 		String ActualRadio = null;
 		String Full = "visibility";
+		String Button = null;
 		
 		int CustomerID = (Integer)request.getAttribute("CustomerID");
 	  	Vector<InsuranceType> VecInsuranceType = (Vector<InsuranceType>)request.getAttribute("VecInsuranceType");
@@ -40,6 +41,7 @@
 	  
 	  	if(VecInsuranceType.size()==3){
 	  		Full = null;
+	  		Button = "visibility";
 	  	}
 	  	
 	   %>
@@ -81,13 +83,26 @@
 			  <div class="row form-group">
                 <div class="col-md-12">
                 </div>
-              </div>             
+              </div>
+              <label class=<%= Button %>>            
               <input type = "hidden" name= CustomerID value = <%= CustomerID %>>
               <input type="submit" value="가입 시작" class="btn btn-primary btn-md text-white" style="float: right;">
+              </label> 
              </div>
             </section>
          </form>
+         
+       <a href="main" class="bg-primary py-5 d-block">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md10">
+						<h2 class="text-white">메인으로 돌아가기</h2>
+					</div>
+				</div>
+			</div>
+		</a>
+		
 	<jsp:include page="/incl/Footer.jsp" />
-		<jsp:include page="/incl/staticFooter.jsp" />
+	<jsp:include page="/incl/staticFooter.jsp" />
 </body>
 </html>

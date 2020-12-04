@@ -26,7 +26,6 @@
         <div class="row mb-5">
           <div class="col-12 text-center">
             <h2 class="text-black h1 site-section-heading">청약서</h2>
-            <p class="lead">상세 정보</p>
           </div>
         </div>
         

@@ -41,7 +41,7 @@
 			</div>
 		</div>
       <div>
-         <form action= "MakeContract?action=Finish" method= POST class="p-5 bg-white" style = "margin:auto; max-width: 700px;" name = "InsInfo" onsubmit="return checkValue()">
+         <form action= "MakeContractFinish" method= POST class="p-5 bg-white" style = "margin:auto; max-width: 700px;" name = "InsInfo" onsubmit="return checkValue()">
               <h2 class="h4 text-black mb-5" align = "center"> 계약서 정보 입력 </h2> 
 			
 			    <% 

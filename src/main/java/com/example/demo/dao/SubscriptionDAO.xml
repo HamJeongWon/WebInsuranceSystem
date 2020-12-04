@@ -28,8 +28,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select insuranceID, customerID from subscription where subscriptionStatus = 1 and contractID is null
     </select>
 
- 	<!--  insert -->
 
+ 	<!--  insert -->
+    <insert id="insertSubscription" parameterType="HashMap">
+		insert into Subscription values(#{insuranceID}, #{customerID}, null, false)
+	</insert>
+    
     <!-- update -->
     <update id="updateSubscriptionStatus" parameterType="Integer">
 	update subscription set subscriptionStatus = true where customerID = #{customerID} and insuranceID = #{insuranceID}
@@ -39,10 +43,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <delete id="deleteSubscription" parameterType="Integer">
 	delete from subscription where customerID= #{customerID} and insuranceID = #{insuranceID}
     </delete>
-     
-    <select id="insertSubscription" parameterType="HashMap">
-		insert into Subscription values(#{insuranceID}, #{customerID}, null, false)
-    </select>
     
     <!-- update -->
      <update id="insertContratIDtoSubscription" parameterType="com.example.demo.model.Subscription.Subscription">

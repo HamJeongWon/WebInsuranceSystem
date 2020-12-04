@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
-		
+			
 
 <section class="site-section bg-light" id="contact-section">
 	<div class="container">
@@ -43,7 +43,7 @@
 									<td><%= VecFullContract.get(i)%></td>
 									<%if((i+1)%5==0){%>
 										<td>
-										<form action = "Recontract?action=start" method="post">
+										<form action = "RecontractStart" method="post">
 											<input type = hidden name = "contractID" value = <%= contractID%>>
 											<input type = hidden name = "customerID" value = <%= customerID%>>
 											<input type="submit" class="btn btn-primary" value="진행">									

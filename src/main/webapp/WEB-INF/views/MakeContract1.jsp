@@ -40,7 +40,7 @@
 										<tr><td><%= IDVector.get(i)%></td>								
 									<%} else {%>									
 										<td><%= IDVector.get(i)%></td>
-										<td><form action = "MakeContract?action=Make" method = "post">
+										<td><form action = "MakeContractMake" method = "post">
 											<input type = "hidden" name = "insuranceID" value = <%= IDVector.get(i-1)%>>
 											<input type = "hidden" name = "customerID" value = <%= IDVector.get(i)%>>
 											<input type= "submit" value = "진행" class="btn btn-primary">

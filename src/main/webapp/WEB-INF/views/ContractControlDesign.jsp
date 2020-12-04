@@ -36,7 +36,7 @@
               <div class="number-behind">03.</div>
               <h2 class="text-primary">계약서작성하기</h2>
                <p class="mb-4"></p>
-			  <p><a href="MakeContract?action=List">계약서작성하기</a></p>
+			  <p><a href="MakeContractList">계약서작성하기</a></p>
             </div>
           </div>
         </div>

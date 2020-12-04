@@ -36,13 +36,13 @@
 								%>
 								<tr><td><%=  insu.getInsuranceID()%></td>
 								<td><%=  insu.getInsuranceName()%></td>							
-								<td> <form action= ./GetMenual> 
+								<td> <form action= GetSaleMenual> 
 								 	 <input type="hidden" name="InsuranceID" value =<%= insu.getInsuranceID()%>>
 								 	 <input type="hidden" name="InsuranceName" value =<%= insu.getInsuranceName()%>>
 								 	 <input type="submit" name = "menual"  class="btn btn-primary" value="판매 메뉴얼 조회">
 								 	 </form>
 								 	 </td>
-						 		<td> <form action= ./GetMenual>
+						 		<td> <form action= GetProductMenual>
 						 			 <input type="hidden" name="InsuranceID" value = <%=insu.getInsuranceID() %>>
 								 	 <input type="hidden" name="InsuranceName" value = <%=insu.getInsuranceName() %>>
 								 	 <input type="submit" name = "menual"  class="btn btn-primary" value="상품 메뉴얼 조회">
@@ -58,7 +58,7 @@
 			</div>
  		 </div>
  		</section>
-		<a href="main.jsp" class="bg-primary py-5 d-block">
+		<a href="main" class="bg-primary py-5 d-block">
      	 <div class="container">
       	  <div class="row justify-content-center">
          	<div class="col-md10">

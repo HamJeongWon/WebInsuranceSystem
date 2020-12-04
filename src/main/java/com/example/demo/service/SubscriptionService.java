@@ -96,10 +96,6 @@ public class SubscriptionService {
 		case ActualCost:// �Ǻ���
 			String[] famillyHistoryArr = null;
 			ActualCost actualCost= this.customerDAO.findActualCostCustomer(customerID);
-			HashMap<String, String> famillyHistory = new HashMap<String, String>();
-			famillyHistoryArr = customerDAO.findActualCostCustomer(customerID).getTempFamilyHistory().split(":");
-			famillyHistory.put(famillyHistoryArr[0], famillyHistoryArr[1]);
-			actualCost.setFamilyHistory(famillyHistory);
 			request.setAttribute("insurance", actualCost);
 			break;
 		}
@@ -149,8 +145,4 @@ public class SubscriptionService {
 	      hash.put("insuranceID", insuranceID); 
 	      this.subscriptionDAO.deleteSubscription(hash);
 	}
-	
-	
-	
-   
 }

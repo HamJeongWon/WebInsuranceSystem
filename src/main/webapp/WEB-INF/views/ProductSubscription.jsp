@@ -6,17 +6,11 @@
 <meta charset="UTF-8">
 <title>상품 가입 신청하기</title>
 </head>
-<style>
-tr, td {
-	padding: 15px;
-}
-</style>
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
-<script>
-</script>
-	<section class="site-section">
+
+	<section class="site-section" style = "padding-top : 200px;">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-4">

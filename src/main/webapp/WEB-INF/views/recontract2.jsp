@@ -85,7 +85,7 @@
 		</div>
     </section> 
     
-    <a href="main.jsp" class="bg-primary py-5 d-block">
+    <a href="main" class="bg-primary py-5 d-block">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md10">

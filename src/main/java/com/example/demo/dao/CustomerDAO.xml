@@ -73,20 +73,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select buildingPrice from Building where BcustomerID = #{customerID}
 	</select>
 	
-	<select id="getActualCost" parameterType="int" resultType="com.example.demo.model.Customer.ActualCost">
+	<select id="getActualCost" parameterType="int" resultMap="ActualCost2">
 		select * from ActualCost where AcustomerID = #{customerID}
 	</select>	
+	    <resultMap type = "com.example.demo.model.Customer.ActualCost" id="ActualCost2">
+   	 	<id column="AcustomerID" property="customerID"/>
+    </resultMap> 
 	
     <!--  insert -->
-    <insert id="insertBuilding" parameterType="HashMap">
-		insert into Building values(#{customerID}, #{buildingPrice}, #{buildingAddress}, #{buildingScale})
+    <insert id="insertBuilding" parameterType="com.example.demo.model.Customer.Building">
+		insert into Building values(#{customerID}, #{BuildingPrice}, #{BuildingAddress}, #{BuildingScale})
     </insert>
  
-    <insert id="insertCar" parameterType="HashMap">
-		insert into Car values(#{customerID}, #{carNumber}, #{carType}, #{carCareer}, #{licenseType})
+    <insert id="insertCar" parameterType="com.example.demo.model.Customer.Car">
+		insert into Car values(#{customerID}, #{CarNumber}, #{carType}, #{DrivingCareer}, #{licenseType})
     </insert>
 
-	<insert id="insertActualCost" parameterType="HashMap">
+	<insert id="insertActualCost" parameterType="com.example.demo.model.Customer.ActualCost">
 		insert into ActualCost values(#{customerID}, #{bloodType}, #{FamilyHistory}, #{diseaseHistory})
 	</insert>
 
@@ -94,9 +97,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into Customer values(#{customerID}, #{phoneNum}, #{customerName})
 	</insert>
 
-	<insert id="insertPersonalInformation" parameterType="HashMap">
-		insert into PersonalInformation values(#{customerID}, #{accidentHistory}, #{accountNumber}, 
-		#{residentRegistrationNumber}, #{gender}, #{job}, #{property})
+	<insert id="insertPersonalInformation" parameterType="com.example.demo.model.Customer.PersonalInformation">
+		insert into PersonalInformation values(#{customerID}, #{AccidentHistory}, #{AccountNumber}, 
+		#{ResidentRegistrationNumber}, #{Gender}, #{job}, #{Property})
 	</insert>
 	
 	<update id="updatePersonalInformation" parameterType="HashMap">

@@ -105,7 +105,7 @@
 		                <p> 보험에 가입을 한 고객들의 계약을 관리할 수 있다. 납부 관리, 만기계약자 관리, 재계약을 할 수 있다.</p>
 		              </blockquote>
 		              <figure class="mb-4 d-flex align-items-center justify-content-center">
-		                <p><a href="#" target="_blank">계약 관리하기</a></p>
+		                <p><a href="ContractControlDesign" target="_blank">계약 관리하기</a></p>
 		              </figure>
 		
 		            </div>

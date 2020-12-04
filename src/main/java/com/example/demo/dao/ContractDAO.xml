@@ -26,21 +26,26 @@ from customer right join contract on contract.customerID = customer.customerID w
  
     <resultMap type="HashMap" id="selectMap"></resultMap>
  
-    <select id="searchContract" resultType="com.example.demo.model.Contract.Contract" parameterType="Integer">
+    <select id="searchContract" resultMap="Contract" parameterType="Integer">
 		select * from Contract where contractID = #{contractID}
     </select>
     
- 	<!--  insert -->
-    <select id="insertSubscription" parameterType="HashMap">
-		insert into Subscription values(#{insuranceID}, #{customerID}, null, false)
-    </select>
+    <resultMap type = "com.example.demo.model.Contract.Contract" id="Contract">
+   	 	<id column="contractID" property="ContractID"/>
+		<id column="contarctExplrationDate" property="tempContractExpirationDate"/>
+		<id column="paymentAmount" property="PaymentAmount"/>
+		<id column="paymentDate" property="tempPaymentDate"/>
+		<id column="paymentPeriod" property="PaymentPeriod"/>
+		<id column="paymentStatus" property="PaymentStatus"/>
+		<id column="personalInformationRetentionPeriod" property="tempPersonalInformationRetentionPeriod"/>
+    </resultMap> 
   
     <select id="createContract" parameterType="com.example.demo.model.Contract.Contract">
 		insert into Contract values(#{ContractID}, #{ContractExpirationDate}, #{PaymentDate}, #{PaymentPeriod}, #{PersonalInformationRetentionPeriod}, 
 		#{paymentType}, #{PaymentStatus}, #{PaymentAmount}, #{customerID})
     </select>  
     
-   	<update id="updateContract" parameterType="com.example.demo.model.Contract.Contract">
+	<update id="updateContract" parameterType="com.example.demo.model.Contract.Contract">
 		update Contract set contarctExplrationDate = #{ContractExpirationDate}, personalInformationRetentionPeriod = #{PersonalInformationRetentionPeriod}, 
 		paymentDate = #{PaymentDate}, paymentType = #{paymentType} where contractID = #{ContractID}
     </update>

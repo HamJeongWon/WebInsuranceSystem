@@ -21,25 +21,26 @@ public class ShowMenual {
 		return "ShowMenual";
 	}
 	
-	@RequestMapping("/GetMenual")
-	private String searchInsuranceIDandName(HttpServletRequest request, Model model) throws Exception{
+	@RequestMapping("/GetSaleMenual")
+	private String GetSaleMenual(HttpServletRequest request, Model model) throws Exception{
 		int InsuranceID = Integer.parseInt(request.getParameter("InsuranceID"));
-	    String InsuranceName = request.getParameter("InsuranceName");	
-		String action = request.getParameter("menual");	
-		String Content = "";
-		Insurance insurance = insuranceService.FindInsurance(InsuranceID);
-		
-		if(action.equals("판매 메뉴얼 조회")) {
-			Content = insurance.getInsuranceSalesManual();
-		}else if(action.equals("상품 메뉴얼 조회")){
-			Content = insurance.getInsuranceManual();
-		}
-	 
-	    if(Content == "") Content = "메뉴얼 존재하지 않음";
+	    String InsuranceName = request.getParameter("InsuranceName");
+
+	    model.addAttribute("InsuranceID", InsuranceID);
+		model.addAttribute("InsuranceName", InsuranceName);
+		model.addAttribute("Content", insuranceService.FindInsurance(InsuranceID).getInsuranceSalesManual());
+
+		return "ShowMenualResult";
+	} 
+	
+	@RequestMapping("/GetProductMenual")
+	private String GetProductMenual(HttpServletRequest request, Model model) throws Exception{
+		int InsuranceID = Integer.parseInt(request.getParameter("InsuranceID"));
+	    String InsuranceName = request.getParameter("InsuranceName");
 	    
 		model.addAttribute("InsuranceID", InsuranceID);
 		model.addAttribute("InsuranceName", InsuranceName);
-		model.addAttribute("Content", Content);
+		model.addAttribute("Content", insuranceService.FindInsurance(InsuranceID).getInsuranceSalesManual());
 
 		return "ShowMenualResult";
 	}
