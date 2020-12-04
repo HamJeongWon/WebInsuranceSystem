@@ -145,6 +145,7 @@ public class InsertCustomer {
 			return "CarPersonalInformationResult";
 			
 		}else if(InsuranceType.equals("ActualCost")) {
+
 			ActualCost.BloodType bloodType = ActualCost.BloodType.valueOf(request.getParameter("bloodType"));
 			ActualCost.DiseaseHistory diseaseHistory = ActualCost.DiseaseHistory.valueOf(request.getParameter("diseaseHistory"));
 			String familyDisease = request.getParameter("familyDisease");

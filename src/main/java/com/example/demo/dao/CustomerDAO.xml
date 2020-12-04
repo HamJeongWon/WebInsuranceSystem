@@ -52,8 +52,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     <resultMap type = "com.example.demo.model.Customer.ActualCost" id="ActualCost">
    	 	<id column="AcustomerID" property="customerID"/>
-		<id column="familyHistory" property="tempFamilyHistory"/>
-
     </resultMap> 
   
 

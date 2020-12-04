@@ -14,7 +14,6 @@ public class ActualCost extends PersonalInformation {
 	
 	private BloodType bloodType;
 	private String FamilyHistory;
-	private String tempFamilyHistory;
 	private DiseaseHistory diseaseHistory;
 
 
@@ -22,22 +21,8 @@ public class ActualCost extends PersonalInformation {
 		this.bloodType = null;
 		this.FamilyHistory = null;
 		this.diseaseHistory = null;
-		this.tempFamilyHistory = null;
 	}
 	
-	
-
-	public String getTempFamilyHistory() {
-		return tempFamilyHistory;
-	}
-
-
-
-	public void setTempFamilyHistory(String tempFamilyHistory) {
-		this.tempFamilyHistory = tempFamilyHistory;
-	}
-
-
 
 	public BloodType getBloodType() {
 		return bloodType;

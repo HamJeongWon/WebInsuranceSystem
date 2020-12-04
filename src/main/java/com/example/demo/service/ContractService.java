@@ -367,4 +367,9 @@ public class ContractService {
 
 		return contract;
 	}
+
+	public Customer findCustomer(int customerID) throws Exception {
+		Customer customer = contractDAO.findCustomer(customerID);
+		return customer;
+	}
 }

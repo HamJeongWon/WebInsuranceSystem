@@ -16,13 +16,24 @@
 </head>
 <script type="text/javascript" src="<%=cp%>/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/numberOnly.js"></script>
-<script type="text/javascript"></script>
-<% 
-	   Contract contract = (Contract)request.getAttribute("contract"); 
-	   Integer accountNumber = (Integer)request.getAttribute("accountNumber");
-	   SimpleDateFormat format1 = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	   SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");	   
-	%>
+<script type="text/javascript">
+
+	function checkValue() {
+	    if(!document.InsInfo.contractExpirationDate.value){
+	        alert("계약 만료일을 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.paymentDate.value){
+	        alert("납입 날짜를 입력하세요.");
+	        return false;
+	    }
+	    if(!document.InsInfo.paymentPeriod.value){
+	        alert("납입 기간을 입력하세요.");
+	        return false;
+	    }
+    }
+</script>
+
 <body>
 	<jsp:include page="/incl/staticHeader.jsp" />
 	<jsp:include page="/incl/Header.jsp" />
@@ -39,11 +50,15 @@
 			</div>
 
 			<div>
-				<form action=RecontractFinish method=POST name=frm
-					class="p-5 bg-white" style="margin: auto; max-width: 700px;"
-					name="InsInfo" onsubmit="return checkValue()">
-
-					<h2 class="h4 text-black mb-5" align="center">계약 정보 수정</h2>
+				<form action= "RecontractFinish" method= POST class="p-5 bg-white" style = "margin:auto; max-width: 700px;" name = "InsInfo" onsubmit="return checkValue()">
+	<h2 class="h4 text-black mb-5" align="center">계약 정보 수정</h2>
+<% 
+	   Contract contract = (Contract)request.getAttribute("contract"); 
+	   Integer accountNumber = (Integer)request.getAttribute("accountNumber");
+	   SimpleDateFormat format1 = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	   SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");	   
+	%>
+				
 
 					<div class="row form-group">
 						<div class="col-md-12">
@@ -108,10 +123,7 @@
 
 				</form>
 			</div>
-<script>
-document.getElementById('paymentDate').value = "2019-02-11"
-document.getElementById('contractExpirationDate').value = "2020-02-01"
-</script>
+
 		</div>
 	</section>
 
